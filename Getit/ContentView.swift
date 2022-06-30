@@ -43,8 +43,8 @@ extension Color {
     static let boxbg = Color("boxBg")
     static let text = Color("text")
     static let subtext = Color("subtext")
-    static let pink = Gradient(colors: [Color("pink1"), Color("pink2")])
-    static let purple = Gradient(colors: [Color("purple1"), Color("purple2")])
+    static let learnGrad = Gradient(colors: [Color("learn1"), Color("learn2")])
+    static let useGrad = Gradient(colors: [Color("use1"), Color("use2")])
 }
 
 public extension Text {
@@ -66,21 +66,17 @@ public extension Text {
     
     func subText() -> some View {
         self.font(.custom("Montserrat-Medium", size:17))
-            .foregroundColor(.subtext)
     }
     
     func listenText() -> some View {
         self.font(.custom("NotoSansJP-Bold", size:24))
-            .foregroundColor(.text)
     }
     
     func requestText() -> some View {
         self.font(.custom("NotoSansJP-Medium", size:17))
-            .foregroundColor(.subtext)
     }
     
     func responseText() -> some View {
         self.font(.custom("Montserrat-Bold", size:24))
-            .foregroundColor(.text)
     }
 }

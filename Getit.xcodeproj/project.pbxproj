@@ -20,6 +20,10 @@
 		CDC9A8D1286D87EF00185C61 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */; };
 		CDC9A8DA286D8CB500185C61 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8D9286D8CB500185C61 /* ActivityView.swift */; };
 		CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8DB286D8CC400185C61 /* LoadingView.swift */; };
+		CDC9A8E1286D919200185C61 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8DE286D919100185C61 /* Montserrat-Bold.ttf */; };
+		CDC9A8E2286D919200185C61 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */; };
+		CDC9A8E3286D919200185C61 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */; };
+		CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,11 @@
 		CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
 		CDC9A8D9286D8CB500185C61 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CDC9A8DB286D8CC400185C61 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CDC9A8DE286D919100185C61 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Medium.otf"; sourceTree = "<group>"; };
+		CDC9A8E6286D91FA00185C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +115,8 @@
 		CDC9A88D286D810700185C61 /* Getit */ = {
 			isa = PBXGroup;
 			children = (
+				CDC9A8E6286D91FA00185C61 /* Info.plist */,
+				CDC9A8DD286D90C900185C61 /* Fonts */,
 				CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */,
 				CDC9A88E286D810700185C61 /* GetitApp.swift */,
 				CDC9A8C8286D874F00185C61 /* ContentView.swift */,
@@ -183,6 +194,17 @@
 				CDC9A8D2286D8C1F00185C61 /* Activity */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		CDC9A8DD286D90C900185C61 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */,
+				CDC9A8DE286D919100185C61 /* Montserrat-Bold.ttf */,
+				CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */,
+				CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC9A896286D810800185C61 /* Preview Assets.xcassets in Resources */,
+				CDC9A8E3286D919200185C61 /* Montserrat-Medium.ttf in Resources */,
 				CDC9A893286D810800185C61 /* Assets.xcassets in Resources */,
+				CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */,
+				CDC9A8E2286D919200185C61 /* Montserrat-SemiBold.ttf in Resources */,
+				CDC9A8E1286D919200185C61 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +510,7 @@
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Getit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -513,6 +540,7 @@
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Getit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
