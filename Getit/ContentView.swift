@@ -72,6 +72,10 @@ public extension Text {
         self.font(.custom("Montserrat-Medium", size: 18))
     }
     
+    func mainBold() -> some View {
+        self.font(.custom("Montserrat-SemiBold", size: 16))
+    }
+    
     func main() -> some View {
         self.font(.custom("Montserrat-Medium", size: 16))
     }
