@@ -25,6 +25,9 @@
 		CDC9A8E3286D919200185C61 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */; };
 		CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */; };
 		CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8EB286D98E500185C61 /* Icon.swift */; };
+		CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F1286DA32100185C61 /* ProgressCard.swift */; };
+		CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */; };
+		CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Medium.otf"; sourceTree = "<group>"; };
 		CDC9A8E6286D91FA00185C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDC9A8EB286D98E500185C61 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		CDC9A8F1286DA32100185C61 /* ProgressCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCard.swift; sourceTree = "<group>"; };
+		CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalCard.swift; sourceTree = "<group>"; };
+		CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,8 +236,35 @@
 		CDC9A8ED286DA2AF00185C61 /* Organisms */ = {
 			isa = PBXGroup;
 			children = (
+				CDC9A8F0286DA2FA00185C61 /* NextUpCard */,
+				CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */,
+				CDC9A8EE286DA2E400185C61 /* ProgressCard */,
 			);
 			path = Organisms;
+			sourceTree = "<group>";
+		};
+		CDC9A8EE286DA2E400185C61 /* ProgressCard */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8F1286DA32100185C61 /* ProgressCard.swift */,
+			);
+			path = ProgressCard;
+			sourceTree = "<group>";
+		};
+		CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */,
+			);
+			path = DailyGoalCard;
+			sourceTree = "<group>";
+		};
+		CDC9A8F0286DA2FA00185C61 /* NextUpCard */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */,
+			);
+			path = NextUpCard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +401,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */,
+				CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */,
 				CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */,
 				CDC9A8C9286D874F00185C61 /* HomeView.swift in Sources */,
 				CDC9A8D1286D87EF00185C61 /* GlobalStore.swift in Sources */,
@@ -376,6 +411,7 @@
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
+				CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
