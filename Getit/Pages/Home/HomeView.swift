@@ -26,8 +26,7 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
             }
             .padding(.top, 24)
-            
-            Spacer()
+            .padding(.bottom, 48)
             
             ProgressCard()
                 .padding(.horizontal, 20)
@@ -39,23 +38,33 @@ struct HomeView: View {
             
             NextUpCard()
                 .padding(.horizontal, 20)
+                .padding(.bottom, 12)
             
             HStack(spacing: 24){
-                Text("Learn")
-                    .exLgBold()
-                    .foregroundColor(.text)
-                    .frame(maxWidth:.infinity)
-                    .frame(height: 72)
-                    .background(LinearGradient(gradient: Color.learnGrad, startPoint: .top, endPoint: .bottom))
-                    .cornerRadius(20)
-            
-                Text("Use")
-                    .exLgBold()
-                    .foregroundColor(.text)
-                    .frame(maxWidth:.infinity)
-                    .frame(height: 72)
-                    .background(LinearGradient(gradient: Color.useGrad, startPoint: .top, endPoint: .bottom))
-                    .cornerRadius(20)
+                Button(action:{
+                    print("pressed learn button!")
+                }){
+                    Text("Learn")
+                        .exLgBold()
+                        .foregroundColor(.text)
+                        .frame(maxWidth:.infinity)
+                        .frame(height: 72)
+                        .background(LinearGradient(gradient: Color.learnGrad, startPoint: .top, endPoint: .bottom))
+                        .cornerRadius(20)
+                }
+                
+                Button(action:{
+                    print("pressed use button!")
+                }){
+                    Text("Use")
+                        .exLgBold()
+                        .foregroundColor(.text)
+                        .frame(maxWidth:.infinity)
+                        .frame(height: 72)
+                        .background(LinearGradient(gradient: Color.useGrad, startPoint: .top, endPoint: .bottom))
+                        .cornerRadius(20)
+                }
+                
             }
             .padding(.horizontal, 20)
             

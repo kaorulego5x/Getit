@@ -15,7 +15,7 @@ enum Tab {
 
 class GlobalStore: ObservableObject {
     @Published var tab: Tab = Tab.home
-    @Published var loaded: Bool = false
+    @Published var loaded: Bool = true
     
     func handleLaunch() -> Void {
         print("Hello World")

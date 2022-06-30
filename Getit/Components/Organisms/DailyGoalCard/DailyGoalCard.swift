@@ -20,26 +20,43 @@ struct DailyGoalCard: View {
                 }
                 Spacer()
             }
+            
             HStack(){
-                HStack(spacing: 24){
-                    Text("Learn")
-                        .lg()
-                        .foregroundColor(.text)
-                    Text("2 / 3")
-                        .lgBold()
-                        .foregroundColor(.text)
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity)
-                
                 HStack(){
                     Text("Learn")
                         .lg()
                         .foregroundColor(.text)
+                    
+                    Spacer()
+                    
                     Text("2 / 3")
                         .lgBold()
                         .foregroundColor(.text)
+                    
+                    Spacer()
                 }
+                .padding(.trailing, 16)
+                .frame(maxWidth: .infinity)
+                
+                HStack{}
+                    .frame(width: 1, height:18)
+                    .cornerRadius(1)
+                    .background(Color.subText)
+                
+                HStack(){
+                    Text("Use")
+                        .lg()
+                        .foregroundColor(.text)
+                    
+                    Spacer()
+                    
+                    Text("4 / 5")
+                        .lgBold()
+                        .foregroundColor(.text)
+                    
+                    Spacer()
+                }
+                .padding(.leading, 16)
                 .frame(maxWidth: .infinity)
             }
         }

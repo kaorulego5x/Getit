@@ -28,6 +28,7 @@
 		CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F1286DA32100185C61 /* ProgressCard.swift */; };
 		CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */; };
 		CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */; };
+		CDC9A8F8286DA94B00185C61 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F7286DA94B00185C61 /* Triangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		CDC9A8F1286DA32100185C61 /* ProgressCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCard.swift; sourceTree = "<group>"; };
 		CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalCard.swift; sourceTree = "<group>"; };
 		CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpCard.swift; sourceTree = "<group>"; };
+		CDC9A8F7286DA94B00185C61 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC9A8EB286D98E500185C61 /* Icon.swift */,
+				CDC9A8F7286DA94B00185C61 /* Triangle.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -236,9 +239,9 @@
 		CDC9A8ED286DA2AF00185C61 /* Organisms */ = {
 			isa = PBXGroup;
 			children = (
-				CDC9A8F0286DA2FA00185C61 /* NextUpCard */,
-				CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */,
 				CDC9A8EE286DA2E400185C61 /* ProgressCard */,
+				CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */,
+				CDC9A8F0286DA2FA00185C61 /* NextUpCard */,
 			);
 			path = Organisms;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */,
+				CDC9A8F8286DA94B00185C61 /* Triangle.swift in Sources */,
 				CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */,
 				CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */,
 				CDC9A8C9286D874F00185C61 /* HomeView.swift in Sources */,
@@ -499,7 +503,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -553,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
