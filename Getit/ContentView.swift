@@ -48,35 +48,39 @@ extension Color {
 }
 
 public extension Text {
-    func title() -> some View {
+    func bullet() -> some View {
+        self.font(.custom("Montserrat-Bold", size:48))
+    }
+    
+    func getit() -> some View {
         self.font(.custom("Montserrat-Bold", size:32))
     }
     
-    func boxtitle() -> some View {
+    func exLgBold() -> some View {
+        self.font(.custom("Montserrat-Bold", size: 20))
+    }
+    
+    func exLg() -> some View {
+        self.font(.custom("Montserrat-Medium", size: 20))
+    }
+    
+    func lgBold() -> some View {
+        self.font(.custom("Montserrat-Bold", size: 18))
+    }
+    
+    func lg() -> some View {
+        self.font(.custom("Montserrat-Medium", size: 18))
+    }
+    
+    func main() -> some View {
+        self.font(.custom("Montserrat-Medium", size: 16))
+    }
+    
+    func mainJa() -> some View {
+        self.font(.custom("NotoSansJP-Medium", size: 16))
+    }
+    
+    func exSmall() -> some View {
         self.font(.custom("Montserrat-Medium", size:12))
-    }
-    
-    func message() -> some View {
-        self.font(.custom("Montserrat-ExtraBold", size: 24))
-    }
-    
-    func menuDesc() -> some View {
-        self.font(.custom("Montserrat-Medium", size:14))
-    }
-    
-    func subText() -> some View {
-        self.font(.custom("Montserrat-Medium", size:17))
-    }
-    
-    func listenText() -> some View {
-        self.font(.custom("NotoSansJP-Bold", size:24))
-    }
-    
-    func requestText() -> some View {
-        self.font(.custom("NotoSansJP-Medium", size:17))
-    }
-    
-    func responseText() -> some View {
-        self.font(.custom("Montserrat-Bold", size:24))
     }
 }
