@@ -12,7 +12,15 @@ struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     
     var body: some View {
-        Text("Hello World")
+        VStack(){
+            HStack(){
+                Icon(.award, 12)
+                    .foregroundColor(.white)
+            }
+        }
+        .ignoresSafeArea()
+        .background(Color.bg)
+        
     }
 }
 

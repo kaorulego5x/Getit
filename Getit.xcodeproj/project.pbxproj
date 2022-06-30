@@ -24,6 +24,7 @@
 		CDC9A8E2286D919200185C61 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */; };
 		CDC9A8E3286D919200185C61 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */; };
 		CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */; };
+		CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8EB286D98E500185C61 /* Icon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		CDC9A8E0286D919200185C61 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Medium.otf"; sourceTree = "<group>"; };
 		CDC9A8E6286D91FA00185C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CDC9A8EB286D98E500185C61 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		CDC9A88D286D810700185C61 /* Getit */ = {
 			isa = PBXGroup;
 			children = (
+				CDC9A8E7286D96E000185C61 /* Components */,
 				CDC9A8E6286D91FA00185C61 /* Info.plist */,
 				CDC9A8DD286D90C900185C61 /* Fonts */,
 				CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */,
@@ -205,6 +208,22 @@
 				CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CDC9A8E7286D96E000185C61 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8E8286D96E700185C61 /* Atoms */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CDC9A8E8286D96E700185C61 /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				CDC9A8EB286D98E500185C61 /* Icon.swift */,
+			);
+			path = Atoms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +367,7 @@
 				CDC9A8DA286D8CB500185C61 /* ActivityView.swift in Sources */,
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
+				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

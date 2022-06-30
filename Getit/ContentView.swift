@@ -40,9 +40,9 @@ struct ContentView_Previews: PreviewProvider {
 
 extension Color {
     static let bg = Color("bg")
-    static let boxbg = Color("boxBg")
+    static let boxBg = Color("boxBg")
     static let text = Color("text")
-    static let subtext = Color("subtext")
+    static let subText = Color("subText")
     static let learnGrad = Gradient(colors: [Color("learn1"), Color("learn2")])
     static let useGrad = Gradient(colors: [Color("use1"), Color("use2")])
 }
