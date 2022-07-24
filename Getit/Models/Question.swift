@@ -7,20 +7,41 @@
 
 import Foundation
 
-enum LearnType: String {
-    case phrase_read = "phrase_read"
-    case phrase_fill = "phrase_fill"
-    case sentence_read = "sentence_read"
+enum LearnType: String, Codable {
+    case single = "single"
+    case idiom = "idiom"
+    case practical = "practical"
 }
 
-protocol Learn {
-    var index: Int { get }
-    var type: LearnType { get }
+struct LearnPerWord: Codable {
+    let word: String
+    let learnType: LearnType
 }
 
-struct PhraseRead: Learn {
+struct LearnPath: Codable {
+    let path: [LearnPerWord]
+}
+
+struct Learn: Codable {
     let index: Int
-    let type = LearnType.phrase_read
+    let word: String
+    let phraseReads: [PhraseRead]
+    let phraseFills: [PhraseFill]
+    let sentenceReads: [SentenceRead]
+    let learnType: LearnType
+    
+    init(index: Int, word: String, phraseReads: [PhraseRead], phraseFills: [PhraseFill], sentenceReads: [SentenceRead], learnType: LearnType) {
+        self.index = index
+        self.word = word
+        self.phraseReads = phraseReads
+        self.phraseFills = phraseFills
+        self.sentenceReads = sentenceReads
+        self.learnType = learnType
+    }
+}
+
+struct PhraseRead: Codable {
+    let index: Int
     let phrase: String
     let translation: String
     
@@ -31,9 +52,8 @@ struct PhraseRead: Learn {
     }
 }
 
-struct PhraseFill: Learn {
+struct PhraseFill: Codable {
     let index: Int
-    let type = LearnType.phrase_fill
     let phrase: String
     let translation: String
     let options: [String]
@@ -46,14 +66,18 @@ struct PhraseFill: Learn {
     }
 }
 
-struct Phrase {
+struct Phrase: Codable {
     let phrase: String
     let translation: String
+    
+    init(phrase: String, translation: String) {
+        self.phrase = phrase
+        self.translation = translation
+    }
 }
 
-struct SentenceRead: Learn {
+struct SentenceRead: Codable {
     let index: Int
-    let type = LearnType.sentence_read
     let sentence: String
     let translation: String
     let phrase: Phrase?
@@ -66,7 +90,7 @@ struct SentenceRead: Learn {
     }
 }
 
-struct SentenceFill {
+struct SentenceFill: Codable {
     let id: String
     let sentence: String
     let translation: String
