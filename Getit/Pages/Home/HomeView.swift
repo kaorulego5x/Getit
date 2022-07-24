@@ -1,6 +1,6 @@
 //
 //  HomeView.swift
-//  Geit
+//  Getit
 //
 //  Created by Kaoru Nishihara on 2021/11/28.
 //
