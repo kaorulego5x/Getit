@@ -7,7 +7,7 @@
 
 import Foundation
 
-let learnPath: [LearnPath] = load("learnPath.json")
+// let unitList: [Unit] = load("unitList.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

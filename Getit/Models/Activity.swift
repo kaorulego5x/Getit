@@ -19,7 +19,7 @@ struct LearnPerWord: Codable {
 }
 
 struct LearnPath: Codable {
-    let path: [LearnPerWord]
+    let learnList: [LearnPerWord]
 }
 
 struct Learn: Codable {
@@ -104,3 +104,20 @@ struct SentenceFill: Codable {
     }
 }
 
+enum ActivityType: String {
+    case learn = "learn"
+    case use = "use"
+}
+
+struct Unit: Codable {
+    let id: String
+    let index: String
+    let sentence: String
+    let translation: String
+    let idiom: Idiom?
+}
+
+struct Idiom: Codable {
+    let idiom: String
+    let translation: String
+}

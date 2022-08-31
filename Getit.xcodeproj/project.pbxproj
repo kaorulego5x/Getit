@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD52053A288D69DE00ECA297 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520539288D69DE00ECA297 /* Question.swift */; };
+		CD52053A288D69DE00ECA297 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520539288D69DE00ECA297 /* Activity.swift */; };
 		CD52053C288D6E8F00ECA297 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053B288D6E8F00ECA297 /* User.swift */; };
 		CD52053F288D762300ECA297 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053E288D762300ECA297 /* QuestionData.swift */; };
+		CD520543288FE25000ECA297 /* unitList.json in Resources */ = {isa = PBXBuildFile; fileRef = CD520542288FE25000ECA297 /* unitList.json */; };
+		CD520545288FE79F00ECA297 /* IdiomReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520544288FE79F00ECA297 /* IdiomReadView.swift */; };
+		CD520547288FE7C100ECA297 /* IdiomFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520546288FE7C100ECA297 /* IdiomFillView.swift */; };
+		CD520549288FE80300ECA297 /* SentenceReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520548288FE80300ECA297 /* SentenceReadView.swift */; };
+		CD52054B288FE80E00ECA297 /* SentenceFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52054A288FE80E00ECA297 /* SentenceFillView.swift */; };
+		CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52054C2892B55400ECA297 /* ActivityView.swift */; };
+		CD52054F2892BDA100ECA297 /* GeometryReaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52054E2892BDA100ECA297 /* GeometryReaderTest.swift */; };
 		CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A88E286D810700185C61 /* GetitApp.swift */; };
 		CDC9A893286D810800185C61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A892286D810800185C61 /* Assets.xcassets */; };
 		CDC9A896286D810800185C61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A895286D810800185C61 /* Preview Assets.xcassets */; };
@@ -21,7 +28,7 @@
 		CDC9A8CB286D874F00185C61 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8C8286D874F00185C61 /* ContentView.swift */; };
 		CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8CE286D87B900185C61 /* HomeViewModel.swift */; };
 		CDC9A8D1286D87EF00185C61 /* GlobalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */; };
-		CDC9A8DA286D8CB500185C61 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8D9286D8CB500185C61 /* ActivityView.swift */; };
+		CDC9A8DA286D8CB500185C61 /* ActivityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8D9286D8CB500185C61 /* ActivityHeaderView.swift */; };
 		CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8DB286D8CC400185C61 /* LoadingView.swift */; };
 		CDC9A8E1286D919200185C61 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8DE286D919100185C61 /* Montserrat-Bold.ttf */; };
 		CDC9A8E2286D919200185C61 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */; };
@@ -29,7 +36,6 @@
 		CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A8E4286D91CF00185C61 /* NotoSansJP-Medium.otf */; };
 		CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8EB286D98E500185C61 /* Icon.swift */; };
 		CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F1286DA32100185C61 /* ProgressCard.swift */; };
-		CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */; };
 		CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */; };
 		CDC9A8F8286DA94B00185C61 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A8F7286DA94B00185C61 /* Triangle.swift */; };
 /* End PBXBuildFile section */
@@ -52,9 +58,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD520539288D69DE00ECA297 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		CD520539288D69DE00ECA297 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		CD52053B288D6E8F00ECA297 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CD52053E288D762300ECA297 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		CD520542288FE25000ECA297 /* unitList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = unitList.json; path = ../../../../Downloads/unitList.json; sourceTree = "<group>"; };
+		CD520544288FE79F00ECA297 /* IdiomReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomReadView.swift; sourceTree = "<group>"; };
+		CD520546288FE7C100ECA297 /* IdiomFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomFillView.swift; sourceTree = "<group>"; };
+		CD520548288FE80300ECA297 /* SentenceReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceReadView.swift; sourceTree = "<group>"; };
+		CD52054A288FE80E00ECA297 /* SentenceFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceFillView.swift; sourceTree = "<group>"; };
+		CD52054C2892B55400ECA297 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		CD52054E2892BDA100ECA297 /* GeometryReaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReaderTest.swift; sourceTree = "<group>"; };
 		CDC9A88B286D810700185C61 /* Getit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC9A88E286D810700185C61 /* GetitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetitApp.swift; sourceTree = "<group>"; };
 		CDC9A892286D810800185C61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,7 +82,7 @@
 		CDC9A8C8286D874F00185C61 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CDC9A8CE286D87B900185C61 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CDC9A8D0286D87EF00185C61 /* GlobalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStore.swift; sourceTree = "<group>"; };
-		CDC9A8D9286D8CB500185C61 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		CDC9A8D9286D8CB500185C61 /* ActivityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHeaderView.swift; sourceTree = "<group>"; };
 		CDC9A8DB286D8CC400185C61 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CDC9A8DE286D919100185C61 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		CDC9A8DF286D919200185C61 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -78,7 +91,6 @@
 		CDC9A8E6286D91FA00185C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CDC9A8EB286D98E500185C61 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		CDC9A8F1286DA32100185C61 /* ProgressCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCard.swift; sourceTree = "<group>"; };
-		CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGoalCard.swift; sourceTree = "<group>"; };
 		CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpCard.swift; sourceTree = "<group>"; };
 		CDC9A8F7286DA94B00185C61 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +123,7 @@
 		CD520538288D69D000ECA297 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CD520539288D69DE00ECA297 /* Question.swift */,
+				CD520539288D69DE00ECA297 /* Activity.swift */,
 				CD52053B288D6E8F00ECA297 /* User.swift */,
 				CD52053E288D762300ECA297 /* QuestionData.swift */,
 			);
@@ -121,6 +133,7 @@
 		CD52053D288D75DB00ECA297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CD520542288FE25000ECA297 /* unitList.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -192,6 +205,8 @@
 			children = (
 				CDC9A8C6286D874F00185C61 /* HomeView.swift */,
 				CDC9A8CE286D87B900185C61 /* HomeViewModel.swift */,
+				CDC9A8F1286DA32100185C61 /* ProgressCard.swift */,
+				CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -207,7 +222,13 @@
 		CDC9A8D2286D8C1F00185C61 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				CDC9A8D9286D8CB500185C61 /* ActivityView.swift */,
+				CD52054C2892B55400ECA297 /* ActivityView.swift */,
+				CDC9A8D9286D8CB500185C61 /* ActivityHeaderView.swift */,
+				CD520544288FE79F00ECA297 /* IdiomReadView.swift */,
+				CD520546288FE7C100ECA297 /* IdiomFillView.swift */,
+				CD520548288FE80300ECA297 /* SentenceReadView.swift */,
+				CD52054A288FE80E00ECA297 /* SentenceFillView.swift */,
+				CD52054E2892BDA100ECA297 /* GeometryReaderTest.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -246,7 +267,6 @@
 		CDC9A8E7286D96E000185C61 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				CDC9A8ED286DA2AF00185C61 /* Organisms */,
 				CDC9A8E8286D96E700185C61 /* Atoms */,
 			);
 			path = Components;
@@ -259,40 +279,6 @@
 				CDC9A8F7286DA94B00185C61 /* Triangle.swift */,
 			);
 			path = Atoms;
-			sourceTree = "<group>";
-		};
-		CDC9A8ED286DA2AF00185C61 /* Organisms */ = {
-			isa = PBXGroup;
-			children = (
-				CDC9A8EE286DA2E400185C61 /* ProgressCard */,
-				CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */,
-				CDC9A8F0286DA2FA00185C61 /* NextUpCard */,
-			);
-			path = Organisms;
-			sourceTree = "<group>";
-		};
-		CDC9A8EE286DA2E400185C61 /* ProgressCard */ = {
-			isa = PBXGroup;
-			children = (
-				CDC9A8F1286DA32100185C61 /* ProgressCard.swift */,
-			);
-			path = ProgressCard;
-			sourceTree = "<group>";
-		};
-		CDC9A8EF286DA2EE00185C61 /* DailyGoalCard */ = {
-			isa = PBXGroup;
-			children = (
-				CDC9A8F3286DA37200185C61 /* DailyGoalCard.swift */,
-			);
-			path = DailyGoalCard;
-			sourceTree = "<group>";
-		};
-		CDC9A8F0286DA2FA00185C61 /* NextUpCard */ = {
-			isa = PBXGroup;
-			children = (
-				CDC9A8F5286DA4B600185C61 /* NextUpCard.swift */,
-			);
-			path = NextUpCard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDC9A896286D810800185C61 /* Preview Assets.xcassets in Resources */,
+				CD520543288FE25000ECA297 /* unitList.json in Resources */,
 				CDC9A8E3286D919200185C61 /* Montserrat-Medium.ttf in Resources */,
 				CDC9A893286D810800185C61 /* Assets.xcassets in Resources */,
 				CDC9A8E5286D91CF00185C61 /* NotoSansJP-Medium.otf in Resources */,
@@ -429,22 +416,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDC9A8F4286DA37200185C61 /* DailyGoalCard.swift in Sources */,
 				CDC9A8F8286DA94B00185C61 /* Triangle.swift in Sources */,
 				CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */,
 				CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */,
+				CD52054F2892BDA100ECA297 /* GeometryReaderTest.swift in Sources */,
+				CD52054B288FE80E00ECA297 /* SentenceFillView.swift in Sources */,
 				CDC9A8C9286D874F00185C61 /* HomeView.swift in Sources */,
-				CD52053A288D69DE00ECA297 /* Question.swift in Sources */,
+				CD52053A288D69DE00ECA297 /* Activity.swift in Sources */,
 				CDC9A8D1286D87EF00185C61 /* GlobalStore.swift in Sources */,
 				CDC9A8CB286D874F00185C61 /* ContentView.swift in Sources */,
 				CD52053C288D6E8F00ECA297 /* User.swift in Sources */,
-				CDC9A8DA286D8CB500185C61 /* ActivityView.swift in Sources */,
+				CD520545288FE79F00ECA297 /* IdiomReadView.swift in Sources */,
+				CDC9A8DA286D8CB500185C61 /* ActivityHeaderView.swift in Sources */,
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
+				CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
 				CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 				CD52053F288D762300ECA297 /* QuestionData.swift in Sources */,
+				CD520547288FE7C100ECA297 /* IdiomFillView.swift in Sources */,
+				CD520549288FE80300ECA297 /* SentenceReadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

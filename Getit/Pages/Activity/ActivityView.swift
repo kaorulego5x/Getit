@@ -2,14 +2,17 @@
 //  ActivityView.swift
 //  Getit
 //
-//  Created by kaorulego5x on 2022/06/30.
+//  Created by kaorulego5x on 2022/07/28.
 //
 
 import SwiftUI
 
 struct ActivityView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(){
+            ActivityHeaderView(type: ActivityType.use, title: "Get Idiom Pt.1", currentQuestionIndex: 5, questionNum: 10)
+        }
+        .background(Color.bg)
     }
 }
 

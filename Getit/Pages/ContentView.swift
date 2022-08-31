@@ -12,12 +12,12 @@ struct ContentView: View {
     
     var body: some View{
         ZStack(){
-            if(store.loaded){
-                if(store.tab == .home){
+            if(store.loaded) {
+                if(store.tab == .home) {
                     HomeView()
                 } else if(store.tab == .activity) {
                     ActivityView()
-                } else if(store.tab == .loading){
+                } else if(store.tab == .loading) {
                     LoadingView()
                 }
             }
@@ -25,6 +25,7 @@ struct ContentView: View {
             SplashView()
                 .opacity(store.loaded ? 0 : 1)
         }
+        .background(Color.bg.ignoresSafeArea())
         .onAppear(){
             store.handleLaunch()
         }
@@ -45,6 +46,7 @@ extension Color {
     static let subText = Color("subText")
     static let learnGrad = Gradient(colors: [Color("learn1"), Color("learn2")])
     static let useGrad = Gradient(colors: [Color("use1"), Color("use2")])
+    static let undone = Color("undone")
 }
 
 public extension Text {

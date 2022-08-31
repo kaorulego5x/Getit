@@ -32,10 +32,6 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, 24)
             
-            DailyGoalCard()
-                .padding(.horizontal, 20)
-                .padding(.bottom, 24)
-            
             NextUpCard()
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
@@ -71,8 +67,6 @@ struct HomeView: View {
             
             Spacer()
         }
-        .background(Color.bg.ignoresSafeArea())
-        
     }
 }
 
