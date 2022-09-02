@@ -17,6 +17,11 @@ enum IconName: String {
     case tag = "tag"
     case zap = "zap"
     case x = "x"
+    case sound = "sound"
+    case clock = "clock"
+    case check = "check"
+    case down = "arrow-down"
+    case next = "arrow"
 }
 
 struct Icon: View {

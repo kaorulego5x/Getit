@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var store: GlobalStore
+    @EnvironmentObject var eo: AppViewModel
     
     var body: some View{
+        
         ZStack(){
-            if(store.loaded) {
-                if(store.tab == .home) {
-                    HomeView()
-                } else if(store.tab == .activity) {
+            if(eo.loaded) {
+                if(eo.tab == .home) {
+                    HomeView(vm: HomeViewModel(eo: self.eo))
+                } else if(eo.tab == .activity) {
                     ActivityView()
-                } else if(store.tab == .loading) {
+                } else if(eo.tab == .loading) {
                     LoadingView()
                 }
             }
             
             SplashView()
-                .opacity(store.loaded ? 0 : 1)
+                .opacity(eo.loaded ? 0 : 1)
         }
         .background(Color.bg.ignoresSafeArea())
         .onAppear(){
-            store.handleLaunch()
+            eo.handleLaunch()
         }
     }
 }
@@ -41,10 +42,13 @@ struct ContentView_Previews: PreviewProvider {
 
 extension Color {
     static let bg = Color("bg")
-    static let boxBg = Color("boxBg")
+    static let lightBg = Color("lightBg")
+    static let darkBg = Color("darkBg")
     static let text = Color("text")
     static let subText = Color("subText")
     static let learnGrad = Gradient(colors: [Color("learn1"), Color("learn2")])
+    static let learn1 = Color("learn1")
+    static let learn2 = Color("learn2")
     static let useGrad = Gradient(colors: [Color("use1"), Color("use2")])
     static let undone = Color("undone")
 }
@@ -53,9 +57,13 @@ public extension Text {
     func bullet() -> some View {
         self.font(.custom("Montserrat-Bold", size:48))
     }
-    
+
     func getit() -> some View {
         self.font(.custom("Montserrat-Bold", size:32))
+    }
+
+    func lookup() -> some View {
+        self.font(.custom("Montserrat-Bold", size: 30))
     }
     
     func exLgBold() -> some View {
@@ -86,8 +94,32 @@ public extension Text {
         self.font(.custom("NotoSansJP-Medium", size: 16))
     }
     
+    func small() -> some View {
+        self.font(.custom("Montserrat-Medium", size:14))
+    }
+    
+    func smallJa() -> some View {
+        self.font(.custom("NotoSansJP-Medium", size:14))
+    }
+    
+    func smallJaBold() -> some View {
+        self.font(.custom("NotoSansJP-Bold", size:14))
+    }
+    
     func exSmall() -> some View {
         self.font(.custom("Montserrat-Medium", size:12))
+    }
+    
+    func exSmallBold() -> some View {
+        self.font(.custom("Montserrat-Bold", size:12))
+    }
+    
+    func exSmallJa() -> some View {
+        self.font(.custom("NotoSansJP-Medium", size:12))
+    }
+    
+    func exSmallJaBold() -> some View {
+        self.font(.custom("NotoSansJP-Bold", size:12))
     }
 }
 
@@ -95,4 +127,9 @@ extension UIScreen{
    static let screenWidth = UIScreen.main.bounds.size.width
    static let screenHeight = UIScreen.main.bounds.size.height
    static let screenSize = UIScreen.main.bounds.size
+}
+
+extension StringProtocol {
+    var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
 }

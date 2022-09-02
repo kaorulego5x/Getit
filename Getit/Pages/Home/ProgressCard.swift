@@ -70,7 +70,7 @@ struct ProgressCard: View {
             }
         }
         .padding(16)
-        .background(Color.boxBg)
+        .background(Color.darkBg)
         .cornerRadius(20)
     }
 }

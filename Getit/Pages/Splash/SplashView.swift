@@ -9,7 +9,18 @@ import SwiftUI
 
 struct SplashView: View {
     var body: some View {
-        Text("Hello World")
+        VStack(){
+            Spacer()
+            HStack(){
+                Spacer()
+                Text("Getit")
+                    .getit()
+                    .foregroundColor(Color.white)
+                Spacer()
+            }
+            Spacer()
+        }
+        .background(Color.bg.ignoresSafeArea())
     }
 }
 

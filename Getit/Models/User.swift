@@ -8,12 +8,12 @@
 import Foundation
 
 struct Progress: Codable {
-    let learn: Int;
-    let user: Int;
+    let word: String
+    let index: Int
 }
 
 struct User: Codable {
-    let progress: Progress
-    let nextIndex: Int;
-    let undoneUses: [String]
+    let id: String
+    let progress: [Progress]
+    let questionNum: Int
 }
