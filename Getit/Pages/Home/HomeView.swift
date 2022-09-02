@@ -17,7 +17,6 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView(){
-            
             VStack(spacing: 0){
                 ZStack(){
                     Text("Getit")
@@ -108,7 +107,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: MapView()){
+                NavigationLink(destination: MapView(eo: self.eo)){
                     NextUpCard(vm.nextUp)
                 }
                 .padding(.horizontal, 20)

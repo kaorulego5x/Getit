@@ -9,18 +9,16 @@ import Foundation
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
-    let questions: [Question]
+    @Published var questions: [Question]?
     @Published var questionIndex = 0
     
-    init(questions: [Question]){
-        self.questions = questions
-    }
-    
     func handleNext() {
-        if(questionIndex + 1 >= questions.count) {
-            
-        } else {
-            self.questionIndex += 1
+        if let questions = questions {
+            if(questionIndex + 1 >= questions.count) {
+                
+            } else {
+                self.questionIndex += 1
+            }
         }
     }
 }

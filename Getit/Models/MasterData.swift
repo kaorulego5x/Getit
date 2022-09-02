@@ -12,9 +12,17 @@ struct MasterData: Codable {
     let totalQuestionNum: Int
 }
 
-struct Word: Codable {
+struct Word: Codable, Hashable {
     let word: String
     let units: [Unit]
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(word)
+    }
+    
+    static func ==(lhs: Word, rhs: Word) -> Bool {
+        return lhs.word == rhs.word
+    }
 }
 
 enum UnitType: String, Codable {
@@ -23,8 +31,16 @@ enum UnitType: String, Codable {
     case idiom = "idiom"
 }
 
-struct Unit: Codable {
+struct Unit: Codable, Hashable {
     let unitId: String
     let labelIndex: Int
     let type: UnitType
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(unitId)
+    }
+    
+    static func ==(lhs: Unit, rhs: Unit) -> Bool {
+        return lhs.unitId == rhs.unitId
+    }
 }

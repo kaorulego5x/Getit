@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @ObservedObject var vm: QuestionViewModel
+    @StateObject var vm = QuestionViewModel()
     var question: Question
     var handleNext: () -> Void
     
@@ -125,6 +125,6 @@ struct QuestionView: View {
 
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView()
+        ContentView()
     }
 }

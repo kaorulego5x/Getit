@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ActivityView: View {
-    let questions: [Question]
-    @ObservedObject var vm: ActivityViewModel
+    @StateObject var vm: ActivityViewModel
     @EnvironmentObject var eo: AppViewModel
     
-    init(questions: [Question]){
-        self.questions = questions
-        self.vm = ActivityViewModel(questions: questions)
+    init(){
+        _vm = StateObject(wrappedValue: ActivityViewModel())
     }
     
     var body: some View {
@@ -40,21 +38,20 @@ struct ActivityView: View {
             .padding(.top, 24)
             .padding(.bottom, 30)
             
-            QuestionView(questions[vm.questionIndex], vm.handleNext)
-            
-            Spacer()
-            
-            Text("\(vm.questionIndex + 1) / \(questions.count)")
-                .exSmallBold()
-                .foregroundColor(Color.white)
-                .frame(width: 64, height: 32)
-                .background(Color.lightBg)
-                .cornerRadius(16)
+            if let questions = vm.questions {
+                QuestionView(questions[vm.questionIndex], vm.handleNext)
+                
+                Spacer()
+                
+                Text("\(vm.questionIndex + 1) / \(questions.count)")
+                    .exSmallBold()
+                    .foregroundColor(Color.white)
+                    .frame(width: 64, height: 32)
+                    .background(Color.lightBg)
+                    .cornerRadius(16)
+            }
         }
         .background(Color.bg.ignoresSafeArea())
-        .onAppear(){
-            vm.start()
-        }
     }
 }
 

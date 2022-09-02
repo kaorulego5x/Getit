@@ -25,6 +25,9 @@
 		CD9CC35628C10D7D00224FC7 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35528C10D7D00224FC7 /* QuestionView.swift */; };
 		CD9CC35828C10D8700224FC7 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */; };
 		CD9CC35A28C10D8F00224FC7 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */; };
+		CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35B28C208D700224FC7 /* MapViewModel.swift */; };
+		CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35D28C20EB300224FC7 /* MapRowView.swift */; };
+		CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */; };
 		CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A88E286D810700185C61 /* GetitApp.swift */; };
 		CDC9A893286D810800185C61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A892286D810800185C61 /* Assets.xcassets */; };
 		CDC9A896286D810800185C61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A895286D810800185C61 /* Preview Assets.xcassets */; };
@@ -80,6 +83,9 @@
 		CD9CC35528C10D7D00224FC7 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
+		CD9CC35B28C208D700224FC7 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		CD9CC35D28C20EB300224FC7 /* MapRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowView.swift; sourceTree = "<group>"; };
+		CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowViewModel.swift; sourceTree = "<group>"; };
 		CDC9A88B286D810700185C61 /* Getit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC9A88E286D810700185C61 /* GetitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetitApp.swift; sourceTree = "<group>"; };
 		CDC9A892286D810800185C61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,6 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				CD9CC33E28BFC8B000224FC7 /* MapView.swift */,
+				CD9CC35B28C208D700224FC7 /* MapViewModel.swift */,
+				CD9CC35D28C20EB300224FC7 /* MapRowView.swift */,
+				CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -300,8 +309,8 @@
 		CDC9A8D8286D8C7C00185C61 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				CD9CC33D28BFC8A300224FC7 /* MapView */,
 				CDC9A8C8286D874F00185C61 /* ContentView.swift */,
+				CD9CC33D28BFC8A300224FC7 /* MapView */,
 				CDC9A8CD286D87A400185C61 /* Splash */,
 				CDC9A8CC286D879D00185C61 /* Home */,
 				CDC9A8D3286D8C2700185C61 /* Loading */,
@@ -504,9 +513,12 @@
 				CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
 				CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */,
+				CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 				CD9CC35428C0FAB900224FC7 /* UserRepository.swift in Sources */,
 				CD52053F288D762300ECA297 /* QuestionData.swift in Sources */,
+				CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */,
+				CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
