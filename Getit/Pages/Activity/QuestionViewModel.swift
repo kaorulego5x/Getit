@@ -9,27 +9,20 @@ import Foundation
 import SwiftUI
 
 class QuestionViewModel: ObservableObject {
-    var seconds = 0.0
-    var timer = Timer()
-    @Published var secondsElapsed = 0.0
-    @Published var isAnswerVisible = false
+    var handleNext: (Bool) -> Void
     
-    func start() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-            if(self.seconds >= 4.9) {
-                timer.invalidate()
-                self.showAnswer()
-                return
-            }
-            self.seconds += 0.05
-            self.secondsElapsed += 0.05
-            
-        }
+    
+    
+    init(_ handleNext: @escaping (Bool) -> Void) {
+        self.handleNext = handleNext
+    }
+
+    
+    func handleInCorrect() {
+        self.handleNext(false)
     }
     
-    func showAnswer() {
-        withAnimation(.easeOut(duration: 0.1)){
-            self.isAnswerVisible = true
-        }
+    func handleCorrect() {
+        self.handleNext(true)
     }
 }

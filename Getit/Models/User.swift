@@ -9,11 +9,11 @@ import Foundation
 
 struct Progress: Codable {
     let word: String
-    let index: Int
+    var index: Int
 }
 
 struct User: Codable {
     let id: String
-    let progress: [Progress]
-    let questionNum: Int
+    var progress: [Progress]
+    var questionNum: Int
 }

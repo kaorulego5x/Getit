@@ -16,19 +16,28 @@ struct MapView: View {
     
     init(eo: AppViewModel) {
         _vm = StateObject(wrappedValue: MapViewModel(eo: eo))
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = UIColor(.clear)
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UITextView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
-        VStack() {
-            ForEach(vm.masterData.words, id: \.self) { word in
-                let progress = vm.user.progress.first(where: {$0.word == word.word})
-                if let progress = progress {
-                    MapRowView(progress: progress, word: word)
+        ScrollView() {
+            VStack(){
+                ForEach(vm.masterData.words, id: \.self) { word in
+                    let progress = vm.user.progress.first(where: {$0.word == word.word})
+                    if let progress = progress {
+                        MapRowView(eo: self.eo, progress: progress, word: word)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
         .background(Color.bg.ignoresSafeArea())
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

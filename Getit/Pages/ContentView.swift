@@ -15,9 +15,9 @@ struct ContentView: View {
         ZStack(){
             if(eo.loaded) {
                 if(eo.tab == .home) {
-                    HomeView(vm: HomeViewModel(eo: self.eo))
+                    HomeView(eo: self.eo)
                 } else if(eo.tab == .activity) {
-                    ActivityView()
+                    ActivityView(eo: self.eo)
                 } else if(eo.tab == .loading) {
                     LoadingView()
                 }
@@ -92,6 +92,10 @@ public extension Text {
     
     func mainJa() -> some View {
         self.font(.custom("NotoSansJP-Medium", size: 16))
+    }
+    
+    func mainJaBold() -> some View {
+        self.font(.custom("NotoSansJP-Bold", size: 16))
     }
     
     func small() -> some View {

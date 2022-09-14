@@ -30,4 +30,10 @@ class UserRepository: UserRepositoryProtocol {
         let ref = FirebaseManager.shared.db.collection(FirestoreCollection.user.rawValue).document(user.id)
         return FirebaseManager.shared.db.post(ref: ref, data: user)
     }
+    
+    func updateProgress(id: String, progress: [Progress]) -> AnyPublisher<Void, Error> {
+        let ref = FirebaseManager.shared.db.collection(FirestoreCollection.user.rawValue).document(id)
+        let transformedProgress = progress.map { p in return ["word": p.word, "index": p.index]}
+        return FirebaseManager.shared.db.update(ref: ref, data: ["progress": transformedProgress])
+    }
 }

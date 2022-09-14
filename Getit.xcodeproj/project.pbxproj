@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD23840528D1CE19003FBD74 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */; };
 		CD52053A288D69DE00ECA297 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520539288D69DE00ECA297 /* MasterData.swift */; };
 		CD52053C288D6E8F00ECA297 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053B288D6E8F00ECA297 /* User.swift */; };
 		CD52053F288D762300ECA297 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053E288D762300ECA297 /* QuestionData.swift */; };
@@ -28,6 +29,9 @@
 		CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35B28C208D700224FC7 /* MapViewModel.swift */; };
 		CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35D28C20EB300224FC7 /* MapRowView.swift */; };
 		CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */; };
+		CD9CC36328C2A63500224FC7 /* QuestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC36228C2A63500224FC7 /* QuestionRepository.swift */; };
+		CD9CC36528C4A7B300224FC7 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC36428C4A7B300224FC7 /* ResultView.swift */; };
+		CD9CC36728C4AA8B00224FC7 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */; };
 		CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9A88E286D810700185C61 /* GetitApp.swift */; };
 		CDC9A893286D810800185C61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A892286D810800185C61 /* Assets.xcassets */; };
 		CDC9A896286D810800185C61 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDC9A895286D810800185C61 /* Preview Assets.xcassets */; };
@@ -68,6 +72,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		CD520539288D69DE00ECA297 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
 		CD52053B288D6E8F00ECA297 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CD52053E288D762300ECA297 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
@@ -86,6 +91,9 @@
 		CD9CC35B28C208D700224FC7 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		CD9CC35D28C20EB300224FC7 /* MapRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowView.swift; sourceTree = "<group>"; };
 		CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowViewModel.swift; sourceTree = "<group>"; };
+		CD9CC36228C2A63500224FC7 /* QuestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRepository.swift; sourceTree = "<group>"; };
+		CD9CC36428C4A7B300224FC7 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		CDC9A88B286D810700185C61 /* Getit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Getit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC9A88E286D810700185C61 /* GetitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetitApp.swift; sourceTree = "<group>"; };
 		CDC9A892286D810800185C61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				CD9CC34A28C0E13000224FC7 /* FirestoreClient.swift */,
+				CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -181,6 +190,7 @@
 		CD9CC34C28C0E15F00224FC7 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				CD9CC36128C2A62A00224FC7 /* Question */,
 				CD9CC35228C0FAAE00224FC7 /* User */,
 				CD9CC34D28C0E16700224FC7 /* MasterData */,
 			);
@@ -201,6 +211,14 @@
 				CD9CC35328C0FAB900224FC7 /* UserRepository.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		CD9CC36128C2A62A00224FC7 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				CD9CC36228C2A63500224FC7 /* QuestionRepository.swift */,
+			);
+			path = Question;
 			sourceTree = "<group>";
 		};
 		CDC9A882286D810700185C61 = {
@@ -294,6 +312,8 @@
 				CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */,
 				CD9CC35528C10D7D00224FC7 /* QuestionView.swift */,
 				CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */,
+				CD9CC36428C4A7B300224FC7 /* ResultView.swift */,
+				CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -498,6 +518,9 @@
 				CD9CC33F28BFC8B000224FC7 /* MapView.swift in Sources */,
 				CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */,
 				CD9CC34828C0CC3800224FC7 /* Question.swift in Sources */,
+				CD23840528D1CE19003FBD74 /* SpeechRecognizer.swift in Sources */,
+				CD9CC36728C4AA8B00224FC7 /* ResultViewModel.swift in Sources */,
+				CD9CC36528C4A7B300224FC7 /* ResultView.swift in Sources */,
 				CD9CC34B28C0E13000224FC7 /* FirestoreClient.swift in Sources */,
 				CDC9A88F286D810700185C61 /* GetitApp.swift in Sources */,
 				CD9CC35828C10D8700224FC7 /* ActivityViewModel.swift in Sources */,
@@ -518,6 +541,7 @@
 				CD9CC35428C0FAB900224FC7 /* UserRepository.swift in Sources */,
 				CD52053F288D762300ECA297 /* QuestionData.swift in Sources */,
 				CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */,
+				CD9CC36328C2A63500224FC7 /* QuestionRepository.swift in Sources */,
 				CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -674,8 +698,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Getit/Preview Content\"";
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
@@ -690,9 +715,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = getit.Getit;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaoru.getit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Getit AppStore Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,8 +730,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Getit/Preview Content\"";
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
@@ -720,9 +747,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = getit.Getit;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaoru.getit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Getit AppStore Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

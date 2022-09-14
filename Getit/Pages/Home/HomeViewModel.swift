@@ -33,6 +33,7 @@ class HomeViewModel: ObservableObject {
             if let progress = progress {
                 if (word.units.count == progress.index + 1) { continue }
                 self.nextUp = NextUp(word: word.word, index: progress.index, unitNum: word.units.count, type: word.units[progress.index].type)
+                return
             } else {
                 print("Word didn't match")
             }
@@ -40,6 +41,8 @@ class HomeViewModel: ObservableObject {
     }
     
     func transitToActivity() {
-        self.eo.transit(Tab.activity)
+        if let nextUp = nextUp {
+            self.eo.startUnit("\(nextUp.word)-\(nextUp.index)")
+        }
     }
 }

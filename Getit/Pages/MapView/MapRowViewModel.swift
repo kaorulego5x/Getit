@@ -9,13 +9,19 @@ import Foundation
 import SwiftUI
 
 class MapRowViewModel: ObservableObject {
+    let eo: AppViewModel
     let progress: Progress
     let word: Word
     let completePercentage: Float
     
-    init(progress: Progress, word: Word) {
+    init(eo: AppViewModel, progress: Progress, word: Word) {
+        self.eo = eo
         self.progress = progress
         self.word = word
         self.completePercentage = 100 * Float(progress.index) / Float(word.units.count)
+    }
+    
+    func selectUnit(_ unitId: String) {
+        eo.startUnit(unitId)
     }
 }

@@ -11,8 +11,8 @@ struct HomeView: View {
     @EnvironmentObject var eo: AppViewModel
     @StateObject var vm: HomeViewModel
     
-    init(vm: HomeViewModel){
-        _vm = StateObject(wrappedValue: vm)
+    init(eo: AppViewModel){
+        _vm = StateObject(wrappedValue: HomeViewModel(eo: eo))
     }
     
     var body: some View {
@@ -134,6 +134,7 @@ struct HomeView: View {
             .navigationBarHidden(true)
             .background(Color.bg.ignoresSafeArea())
         }
+        .accentColor(Color.subText)
     }
 }
 
