@@ -19,7 +19,7 @@ class AppViewModel: ObservableObject {
     @Published var loaded: Bool = false
     @Published var masterData: MasterData?
     @Published var user: User?
-    @Published var selectedUnit: String?
+    @Published var selectedUnit: Unit?
     var masterDataRepository = MasterDataRepository()
     var userRepository = UserRepository()
     private var cancellables: [AnyCancellable] = []
@@ -108,8 +108,8 @@ class AppViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func startUnit(_ unitId: String) {
-        self.selectedUnit = unitId
+    func startUnit(_ unit: Unit) {
+        self.selectedUnit = unit
         self.transit(.activity)
     }
     
@@ -117,24 +117,26 @@ class AppViewModel: ObservableObject {
         self.tab = tab
     }
     
-    func levelUp(unitId: String) {
-        let word = unitId.components(separatedBy: "-")[0]
-        let index = Int(unitId.components(separatedBy: "-")[1])!
-        if var user = user {
-            if let wordIndex = user.progress.firstIndex(where: { $0.word == word }) {
-                if(user.progress[wordIndex].index == index) {
-                    user.progress[wordIndex].index += 1
-                    self.user = user
-                    userRepository.updateProgress(id: user.id, progress: user.progress)
-                        .sink(receiveCompletion: { completion in
-                            switch completion {
-                            case .finished: break;
-                            case .failure(let error): print(error)
-                            }
-                        }, receiveValue: { _ in
-                            print("updated progress")
-                        })
-                        .store(in: &cancellables)
+    func levelUp() {
+        if let unit = selectedUnit {
+            let word = unit.unitId.components(separatedBy: "-")[0]
+            let index = Int(unit.unitId.components(separatedBy: "-")[1])!
+            if var user = user {
+                if let wordIndex = user.progress.firstIndex(where: { $0.word == word }) {
+                    if(user.progress[wordIndex].index == index) {
+                        user.progress[wordIndex].index += 1
+                        self.user = user
+                        userRepository.updateProgress(id: user.id, progress: user.progress)
+                            .sink(receiveCompletion: { completion in
+                                switch completion {
+                                case .finished: break;
+                                case .failure(let error): print(error)
+                                }
+                            }, receiveValue: { _ in
+                                print("updated progress")
+                            })
+                            .store(in: &cancellables)
+                    }
                 }
             }
         }

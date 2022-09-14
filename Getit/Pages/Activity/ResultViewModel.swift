@@ -19,8 +19,6 @@ class ResultViewModel: ObservableObject {
     }
     
     func completeUnit() {
-        if let selectedUnit = eo.selectedUnit {
-            self.eo.levelUp(unitId: selectedUnit)
-        }
+        self.eo.levelUp()
     }
 }

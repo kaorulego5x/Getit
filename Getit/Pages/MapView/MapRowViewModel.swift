@@ -21,7 +21,7 @@ class MapRowViewModel: ObservableObject {
         self.completePercentage = 100 * Float(progress.index) / Float(word.units.count)
     }
     
-    func selectUnit(_ unitId: String) {
-        eo.startUnit(unitId)
+    func selectUnit(_ unit: Unit) {
+        eo.startUnit(unit)
     }
 }

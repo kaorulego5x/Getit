@@ -52,7 +52,7 @@ struct MapRowView: View {
                             Spacer()
                             
                             Button(action: {
-                                self.vm.selectUnit(unit.unitId)
+                                self.vm.selectUnit(unit)
                             }){
                                 if(unitIndex < progress.index) {
                                     Icon(IconName.replay, 16)

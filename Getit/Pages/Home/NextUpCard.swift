@@ -10,9 +10,9 @@ import SwiftUI
 let UnitTypeText = [UnitType.single: "単体での使い方", UnitType.idiom: "イディオム", UnitType.practical: "定型表現"]
 
 struct NextUpCard: View {
-    let nextUp: NextUp?
+    let nextUp: Unit?
     
-    init(_ nextUp: NextUp?) {
+    init(_ nextUp: Unit?) {
         self.nextUp = nextUp
     }
     
@@ -31,19 +31,14 @@ struct NextUpCard: View {
                         }
                         
                         HStack(alignment: .bottom){
-                            Text(nextUp.word.firstUppercased)
+                            Text(nextUp.unitId.components(separatedBy: "-")[0].firstUppercased)
                                 .exLgBold()
                                 .foregroundColor(Color.white)
                             
                             HStack(alignment: .bottom, spacing: 3){
-                                Text("#\(nextUp.index+1)")
+                                Text("#\(nextUp.unitId.components(separatedBy: "-")[1])")
                                     .exLgBold()
                                     .foregroundColor(Color.white)
-                                
-                                Text("/ \(nextUp.unitNum)")
-                                    .exSmallBold()
-                                    .foregroundColor(Color.white)
-                                    .padding(.bottom, 2)
                             }
                             
                             Text(UnitTypeText[nextUp.type] ?? "")

@@ -8,18 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct NextUp {
-    let word: String
-    let index: Int
-    let unitNum: Int
-    let type: UnitType
-}
-
 class HomeViewModel: ObservableObject {
     let eo: AppViewModel
     let masterData: MasterData
     let user: User
-    var nextUp: NextUp?
+    var nextUp: Unit?
     @Published var progressRate: CGFloat = 0
     @Published var num = 0
     
@@ -32,7 +25,7 @@ class HomeViewModel: ObservableObject {
             let progress = self.user.progress.first(where: {$0.word == word.word})
             if let progress = progress {
                 if (word.units.count == progress.index + 1) { continue }
-                self.nextUp = NextUp(word: word.word, index: progress.index, unitNum: word.units.count, type: word.units[progress.index].type)
+                self.nextUp = word.units[progress.index]
                 return
             } else {
                 print("Word didn't match")
@@ -42,7 +35,7 @@ class HomeViewModel: ObservableObject {
     
     func transitToActivity() {
         if let nextUp = nextUp {
-            self.eo.startUnit("\(nextUp.word)-\(nextUp.index)")
+            self.eo.startUnit(nextUp)
         }
     }
 }
