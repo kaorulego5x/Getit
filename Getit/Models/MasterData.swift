@@ -1,5 +1,5 @@
 //
-//  Question.swift
+//  MasterData.swift
 //  Getit
 //
 //  Created by kaorulego5x on 2022/07/24.
@@ -9,7 +9,7 @@ import Foundation
 
 struct MasterData: Codable {
     let words: [Word]
-    let totalQuestionNum: Int
+    let totalPhraseNum: Int
 }
 
 struct Word: Codable, Hashable {

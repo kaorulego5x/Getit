@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ResultView: View {
     let eo: AppViewModel
-    var questionNum: Int
+    var phraseNum: Int
     var correctNum: Int
     @StateObject var vm: ResultViewModel
     
-    init(eo: AppViewModel, questionNum: Int, correctNum: Int) {
+    init(eo: AppViewModel, phraseNum: Int, correctNum: Int) {
         self.eo = eo
-        self.questionNum = questionNum
+        self.phraseNum = phraseNum
         self.correctNum = correctNum
         self._vm = StateObject(wrappedValue: ResultViewModel(eo: eo))
     }
@@ -30,7 +30,7 @@ struct ResultView: View {
                     .foregroundColor(Color.white)
                 
                 HStack(spacing: 8){
-                    Text(String(questionNum))
+                    Text(String(phraseNum))
                         .getit()
                         .foregroundColor(Color.white)
                     

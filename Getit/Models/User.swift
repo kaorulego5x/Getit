@@ -15,5 +15,5 @@ struct Progress: Codable {
 struct User: Codable {
     let id: String
     var progress: [Progress]
-    var questionNum: Int
+    var phraseNum: Int
 }

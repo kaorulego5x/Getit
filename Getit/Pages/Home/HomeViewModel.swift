@@ -20,7 +20,7 @@ class HomeViewModel: ObservableObject {
         self.eo = eo
         self.masterData = eo.masterData!
         self.user = eo.user!
-        self.progressRate = CGFloat(self.user.questionNum) / CGFloat(self.masterData.totalQuestionNum)
+        self.progressRate = CGFloat(self.user.phraseNum) / CGFloat(self.masterData.totalPhraseNum)
         for word in self.masterData.words {
             let progress = self.user.progress.first(where: {$0.word == word.word})
             if let progress = progress {

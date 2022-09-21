@@ -1,5 +1,5 @@
 //
-//  QuestionRepository.swift
+//  PhraseRepository.swift
 //  Getit
 //
 //  Created by kaorulego5x on 2022/09/03.
@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-protocol QuestionRepositoryProtocol {
-    func fetchUnit(unitId: String) -> AnyPublisher<[Question], Error>
+protocol PhraseRepositoryProtocol {
+    func fetchUnit(unitId: String) -> AnyPublisher<[Phrase], Error>
 }
 
-class QuestionRepository: QuestionRepositoryProtocol {
-    func fetchUnit(unitId: String) -> AnyPublisher<[Question], Error> {
-        let ref = FirebaseManager.shared.db.collection(FirestoreCollection.question.rawValue).whereField("unitId", isEqualTo: unitId)
+class PhraseRepository: PhraseRepositoryProtocol {
+    func fetchUnit(unitId: String) -> AnyPublisher<[Phrase], Error> {
+        let ref = FirebaseManager.shared.db.collection(FirestoreCollection.phrase.rawValue).whereField("unitId", isEqualTo: unitId)
         return FirebaseManager.shared.db.fetchAll(ref: ref)
     }
 }

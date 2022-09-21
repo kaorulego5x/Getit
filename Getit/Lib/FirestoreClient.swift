@@ -14,7 +14,7 @@ struct FirestoreEncodeError: Error {
 
 enum FirestoreCollection: String {
     case masterdata = "masterdata"
-    case question = "question"
+    case phrase = "phrase"
     case user = "user"
 }
 

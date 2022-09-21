@@ -8,24 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		CD23840528D1CE19003FBD74 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */; };
+		CD23840728D1FF05003FBD74 /* RFMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840628D1FF05003FBD74 /* RFMView.swift */; };
+		CD23840928D1FF22003FBD74 /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840828D1FF22003FBD74 /* ShuffleView.swift */; };
+		CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840A28D1FF2A003FBD74 /* IdiomView.swift */; };
 		CD52053A288D69DE00ECA297 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520539288D69DE00ECA297 /* MasterData.swift */; };
 		CD52053C288D6E8F00ECA297 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053B288D6E8F00ECA297 /* User.swift */; };
-		CD52053F288D762300ECA297 /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52053E288D762300ECA297 /* QuestionData.swift */; };
 		CD520543288FE25000ECA297 /* unitList.json in Resources */ = {isa = PBXBuildFile; fileRef = CD520542288FE25000ECA297 /* unitList.json */; };
 		CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD52054C2892B55400ECA297 /* ActivityView.swift */; };
+		CD8C42C428DA052100356824 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = CD8C42C328DA052100356824 /* WrappingHStack */; };
 		CD9CC33C28BFC7C000224FC7 /* NotoSansJP-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */; };
 		CD9CC33F28BFC8B000224FC7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC33E28BFC8B000224FC7 /* MapView.swift */; };
 		CD9CC34228C0CAFD00224FC7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CD9CC34128C0CAFD00224FC7 /* FirebaseAuth */; };
 		CD9CC34428C0CAFD00224FC7 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD9CC34328C0CAFD00224FC7 /* FirebaseFirestore */; };
 		CD9CC34628C0CAFD00224FC7 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CD9CC34528C0CAFD00224FC7 /* FirebaseFirestoreSwift */; };
-		CD9CC34828C0CC3800224FC7 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC34728C0CC3800224FC7 /* Question.swift */; };
+		CD9CC34828C0CC3800224FC7 /* Phrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC34728C0CC3800224FC7 /* Phrase.swift */; };
 		CD9CC34B28C0E13000224FC7 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC34A28C0E13000224FC7 /* FirestoreClient.swift */; };
 		CD9CC34F28C0E17800224FC7 /* MasterdataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC34E28C0E17800224FC7 /* MasterdataRepository.swift */; };
 		CD9CC35128C0E3E500224FC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD9CC35028C0E3E500224FC7 /* GoogleService-Info.plist */; };
 		CD9CC35428C0FAB900224FC7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35328C0FAB900224FC7 /* UserRepository.swift */; };
-		CD9CC35628C10D7D00224FC7 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35528C10D7D00224FC7 /* QuestionView.swift */; };
 		CD9CC35828C10D8700224FC7 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */; };
-		CD9CC35A28C10D8F00224FC7 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */; };
 		CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35B28C208D700224FC7 /* MapViewModel.swift */; };
 		CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35D28C20EB300224FC7 /* MapRowView.swift */; };
 		CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */; };
@@ -73,21 +74,21 @@
 
 /* Begin PBXFileReference section */
 		CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		CD23840628D1FF05003FBD74 /* RFMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFMView.swift; sourceTree = "<group>"; };
+		CD23840828D1FF22003FBD74 /* ShuffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleView.swift; sourceTree = "<group>"; };
+		CD23840A28D1FF2A003FBD74 /* IdiomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomView.swift; sourceTree = "<group>"; };
 		CD520539288D69DE00ECA297 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
 		CD52053B288D6E8F00ECA297 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CD52053E288D762300ECA297 /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
 		CD520542288FE25000ECA297 /* unitList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = unitList.json; path = ../../../../Downloads/unitList.json; sourceTree = "<group>"; };
 		CD52054C2892B55400ECA297 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Bold.otf"; sourceTree = "<group>"; };
 		CD9CC33E28BFC8B000224FC7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		CD9CC34728C0CC3800224FC7 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		CD9CC34728C0CC3800224FC7 /* Phrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phrase.swift; sourceTree = "<group>"; };
 		CD9CC34A28C0E13000224FC7 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		CD9CC34E28C0E17800224FC7 /* MasterdataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterdataRepository.swift; sourceTree = "<group>"; };
 		CD9CC35028C0E3E500224FC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD9CC35328C0FAB900224FC7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		CD9CC35528C10D7D00224FC7 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
-		CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		CD9CC35B28C208D700224FC7 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		CD9CC35D28C20EB300224FC7 /* MapRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowView.swift; sourceTree = "<group>"; };
 		CD9CC35F28C2105000224FC7 /* MapRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRowViewModel.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8C42C428DA052100356824 /* WrappingHStack in Frameworks */,
 				CD9CC34228C0CAFD00224FC7 /* FirebaseAuth in Frameworks */,
 				CD9CC34428C0CAFD00224FC7 /* FirebaseFirestore in Frameworks */,
 				CD9CC34628C0CAFD00224FC7 /* FirebaseFirestoreSwift in Frameworks */,
@@ -153,8 +155,7 @@
 			children = (
 				CD520539288D69DE00ECA297 /* MasterData.swift */,
 				CD52053B288D6E8F00ECA297 /* User.swift */,
-				CD52053E288D762300ECA297 /* QuestionData.swift */,
-				CD9CC34728C0CC3800224FC7 /* Question.swift */,
+				CD9CC34728C0CC3800224FC7 /* Phrase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,8 +311,9 @@
 			children = (
 				CD52054C2892B55400ECA297 /* ActivityView.swift */,
 				CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */,
-				CD9CC35528C10D7D00224FC7 /* QuestionView.swift */,
-				CD9CC35928C10D8F00224FC7 /* QuestionViewModel.swift */,
+				CD23840628D1FF05003FBD74 /* RFMView.swift */,
+				CD23840828D1FF22003FBD74 /* ShuffleView.swift */,
+				CD23840A28D1FF2A003FBD74 /* IdiomView.swift */,
 				CD9CC36428C4A7B300224FC7 /* ResultView.swift */,
 				CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */,
 			);
@@ -388,6 +390,7 @@
 				CD9CC34128C0CAFD00224FC7 /* FirebaseAuth */,
 				CD9CC34328C0CAFD00224FC7 /* FirebaseFirestore */,
 				CD9CC34528C0CAFD00224FC7 /* FirebaseFirestoreSwift */,
+				CD8C42C328DA052100356824 /* WrappingHStack */,
 			);
 			productName = Getit;
 			productReference = CDC9A88B286D810700185C61 /* Getit.app */;
@@ -463,6 +466,7 @@
 			mainGroup = CDC9A882286D810700185C61;
 			packageReferences = (
 				CD9CC34028C0CAFD00224FC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CD8C42C228DA052100356824 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = CDC9A88C286D810700185C61 /* Products */;
 			projectDirPath = "";
@@ -517,7 +521,7 @@
 				CDC9A8F8286DA94B00185C61 /* Triangle.swift in Sources */,
 				CD9CC33F28BFC8B000224FC7 /* MapView.swift in Sources */,
 				CDC9A8F6286DA4B600185C61 /* NextUpCard.swift in Sources */,
-				CD9CC34828C0CC3800224FC7 /* Question.swift in Sources */,
+				CD9CC34828C0CC3800224FC7 /* Phrase.swift in Sources */,
 				CD23840528D1CE19003FBD74 /* SpeechRecognizer.swift in Sources */,
 				CD9CC36728C4AA8B00224FC7 /* ResultViewModel.swift in Sources */,
 				CD9CC36528C4A7B300224FC7 /* ResultView.swift in Sources */,
@@ -526,20 +530,20 @@
 				CD9CC35828C10D8700224FC7 /* ActivityViewModel.swift in Sources */,
 				CDC9A8C9286D874F00185C61 /* HomeView.swift in Sources */,
 				CD52053A288D69DE00ECA297 /* MasterData.swift in Sources */,
-				CD9CC35A28C10D8F00224FC7 /* QuestionViewModel.swift in Sources */,
 				CDC9A8D1286D87EF00185C61 /* AppViewModel.swift in Sources */,
-				CD9CC35628C10D7D00224FC7 /* QuestionView.swift in Sources */,
 				CDC9A8CB286D874F00185C61 /* ContentView.swift in Sources */,
+				CD23840928D1FF22003FBD74 /* ShuffleView.swift in Sources */,
 				CD52053C288D6E8F00ECA297 /* User.swift in Sources */,
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
+				CD23840728D1FF05003FBD74 /* RFMView.swift in Sources */,
 				CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */,
+				CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
 				CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */,
 				CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 				CD9CC35428C0FAB900224FC7 /* UserRepository.swift in Sources */,
-				CD52053F288D762300ECA297 /* QuestionData.swift in Sources */,
 				CD9CC35E28C20EB300224FC7 /* MapRowView.swift in Sources */,
 				CD9CC36328C2A63500224FC7 /* QuestionRepository.swift in Sources */,
 				CD9CC35C28C208D700224FC7 /* MapViewModel.swift in Sources */,
@@ -700,12 +704,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Getit/Preview Content\"";
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Getit/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリでは、マイクを使用します";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "このアプリでは、音声認識を使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -732,12 +738,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Getit/Preview Content\"";
 				DEVELOPMENT_TEAM = RN596XYAX5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Getit/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "このアプリでは、マイクを使用します";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "このアプリでは、音声認識を使用します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -875,6 +883,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD8C42C228DA052100356824 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CD9CC34028C0CAFD00224FC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -886,6 +902,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD8C42C328DA052100356824 /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD8C42C228DA052100356824 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
 		CD9CC34128C0CAFD00224FC7 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CD9CC34028C0CAFD00224FC7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

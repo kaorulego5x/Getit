@@ -35,7 +35,7 @@ class SpeechRecognizer: ObservableObject {
     private let recognizer: SFSpeechRecognizer?
     
     init() {
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ja_JP"))
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en_US"))
         
         
             do {

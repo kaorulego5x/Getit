@@ -50,7 +50,7 @@ struct HomeView: View {
                                 .foregroundColor(Color.white)
                                 .frame(width: 64, alignment: .leading)
                             
-                            Text(String(vm.user.questionNum))
+                            Text(String(vm.user.phraseNum))
                                 .mainBold()
                                 .foregroundColor(Color.white)
                         }
@@ -66,7 +66,7 @@ struct HomeView: View {
                                 .foregroundColor(Color.white)
                                 .frame(width: 64, alignment: .leading)
                             
-                            Text(String(vm.masterData.totalQuestionNum))
+                            Text(String(vm.masterData.totalPhraseNum))
                                 .mainBold()
                                 .foregroundColor(Color.white)
                         }
@@ -127,6 +127,7 @@ struct HomeView: View {
                     .background(LinearGradient(gradient: Color.learnGrad, startPoint: .leading, endPoint: .trailing))
                     .cornerRadius(12)
                 }
+                .buttonStyle(GrowingButton())
                 .padding(.horizontal, 20)
                 .padding(.bottom, 48)
             }
@@ -141,5 +142,13 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct GrowingButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.05 : 1)
+            .animation(.easeOut(duration: 0.05), value: configuration.isPressed)
     }
 }

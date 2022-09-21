@@ -94,7 +94,7 @@ class AppViewModel: ObservableObject {
     
     func register(userId: String, _ masterData: MasterData) {
         let progress = masterData.words.map { return Progress(word: $0.word, index: 0)}
-        let newUser = User(id: userId, progress: progress, questionNum: 0)
+        let newUser = User(id: userId, progress: progress, phraseNum: 0)
         userRepository.post(newUser)
             .sink(receiveCompletion: { completion in
                 switch completion {

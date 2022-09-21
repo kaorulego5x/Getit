@@ -1,5 +1,5 @@
 //
-//  Question.swift
+//  Phrase.swift
 //  Getit
 //
 //  Created by kaorulego5x on 2022/09/01.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Question: Codable {
+struct Phrase: Codable {
     let unitId: String
     let en: String
     let ja: String
