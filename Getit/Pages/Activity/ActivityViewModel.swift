@@ -33,6 +33,13 @@ struct EnPart: Identifiable {
     var id: UUID
 }
 
+struct IdiomChoice {
+    var text: String
+    var isCorrect: Bool
+}
+
+let randomChoices: [String] = ["on", "in", "it", "down", "upon", "to", "up"]
+
 class ActivityViewModel: ObservableObject {
     let eo: AppViewModel
     let phraseRepository = PhraseRepository()
@@ -47,6 +54,12 @@ class ActivityViewModel: ObservableObject {
     // RAM
     @Published var enParts: [EnPart] = []
     @Published var isCompleted: Bool = false
+    
+    // Idiom
+    @Published var idiomChoices: [IdiomChoice] = []
+    @Published var displayIdiomChoices: [IdiomChoice] = []
+    @Published var selectedChoiceIndex: Int = -1
+    @Published var isIdiomChoiceDone: Bool = false
     
     init(eo: AppViewModel) {
         self.eo = eo
@@ -65,15 +78,29 @@ class ActivityViewModel: ObservableObject {
         self.currentSession = sessions[self.sessionIndex]
         self.enParts = []
         self.isCompleted = false
+        self.idiomChoices = []
+        self.displayIdiomChoices = []
+        self.selectedChoiceIndex = -1
+        self.isIdiomChoiceDone = false
         let session = sessions[sessionIndex]
         switch(session.sessionType) {
         case .ram:
             self.enParts = session.phrase.en.components(separatedBy: " ").map { component in
-                return EnPart(text: component, isSpeeched: false, id: UUID())
+                return EnPart(text: component.replacingOccurrences(of: "`", with: ""), isSpeeched: false, id: UUID())
+            }
+        case .idiom:
+            let correctAnswer = session.phrase.en.components(separatedBy: " ").first(where: { $0.contains("`") })?.replacingOccurrences(of: "`", with: "")
+            if let correctAnswer = correctAnswer?.lowercased() {
+                self.idiomChoices.append(IdiomChoice(text: correctAnswer, isCorrect: true))
+                let otherChoices = randomChoices.filter { $0 != correctAnswer }.shuffled()
+                for i in 0..<4 {
+                    self.idiomChoices.append(IdiomChoice(text: otherChoices[i], isCorrect: false))
+                }
+                self.displayIdiomChoices = self.idiomChoices.shuffled()
+            } else {
+                print("Idiom not found")
             }
         case .shuffle:
-            return
-        case .idiom:
             return
         }
     }
@@ -125,7 +152,7 @@ class ActivityViewModel: ObservableObject {
         var carry = 0
         for (index, part) in enParts.enumerated() {
             var a: String = part.text.lowercased()
-            if(a.contains("!?") || a.contains("?!")) {
+            if(a.contains("!?") || a.contains("?!") || a.contains("!!")) {
                 a.removeLast()
                 a.removeLast()
             } else if(a.contains(",") || a.contains(".") || a.contains("…") || a.contains("!") || a.contains("?")) {
@@ -135,12 +162,16 @@ class ActivityViewModel: ObservableObject {
             if(part.isSpeeched) {
                 continue
             } else if(inputParts.contains(a)) {
-                self.enParts[index].isSpeeched = true
+                withAnimation(.easeOut(duration: 0.2)) {
+                    self.enParts[index].isSpeeched = true
+                }
                 if(index == enParts.count - 1) {
                     self.handleCompleted()
                 }
                 if(carry == 1) {
-                    self.enParts[index-1].isSpeeched = true
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        self.enParts[index-1].isSpeeched = true
+                    }
                 }
             } else if (carry == 0){
                 carry = 1
@@ -151,10 +182,26 @@ class ActivityViewModel: ObservableObject {
     }
     
     private func handleCompleted() {
-        
         self.isCompleted = true
         let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.warning)
+        generator.notificationOccurred(.success)
+    }
+    
+    // Idiom
+    func selectChoice(choice: IdiomChoice) {
+        if let index = self.idiomChoices.firstIndex(where: {$0.text == choice.text}) {
+            self.selectedChoiceIndex = index
+        } else {
+            print("Error occurred when selecting idiom choice")
+        }
+    }
+    
+    func validateIdiomChoice() {
+        withAnimation(.easeOut(duration: 0.2)) {
+            self.isIdiomChoiceDone = true
+        }
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(self.selectedChoiceIndex == 0 ? .success : .warning)
     }
 }
 

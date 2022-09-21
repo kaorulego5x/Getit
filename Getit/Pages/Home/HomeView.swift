@@ -149,6 +149,6 @@ struct GrowingButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 1.05 : 1)
-            .animation(.easeOut(duration: 0.05), value: configuration.isPressed)
+            .animation(.spring(response: 0.1, dampingFraction: 1, blendDuration: 0.1), value: configuration.isPressed)
     }
 }

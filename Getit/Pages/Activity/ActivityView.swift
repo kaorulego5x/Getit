@@ -25,12 +25,13 @@ struct ActivityView: View {
             } else if(vm.route == .activity) {
                 VStack(){
                     HStack(){
-                        Icon(IconName.sound, 15)
-                            .foregroundColor(Color.text)
-                            
-                        Text("声に出して訳そう！")
-                            .smallJaBold()
-                            .foregroundColor(Color.text)
+                        
+                        Text("\(vm.sessionIndex + 1) / \(vm.sessions.count)")
+                            .exSmallBold()
+                            .foregroundColor(Color.white)
+                            .frame(width: 64, height: 32)
+                            .background(Color.lightBg)
+                            .cornerRadius(16)
                         
                         Spacer()
                         
@@ -49,40 +50,15 @@ struct ActivityView: View {
                         switch(session.sessionType) {
                         case .ram:
                             RAMView(session: session, enParts: vm.enParts, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
+                        case .idiom:
+                            IdiomView(session: session, idiomChoices: vm.idiomChoices, displayIdiomChoices: vm.displayIdiomChoices, selectedChoiceIndex: vm.selectedChoiceIndex, isIdiomChoiceDone: vm.isIdiomChoiceDone, selectChoice: vm.selectChoice, validateIdiomChoice: vm.validateIdiomChoice, handleNext: vm.handleNext)
                         case .shuffle:
                             ShuffleView()
-                        case .idiom:
-                            IdiomView()
                         }
                     }
-                        
-                    Text("\(vm.sessionIndex + 1) / \(vm.sessions.count)")
-                        .exSmallBold()
-                        .foregroundColor(Color.white)
-                        .frame(width: 64, height: 32)
-                        .background(Color.lightBg)
-                        .cornerRadius(16)
                     
                     Spacer()
-                    
-                    Button(action:{
-                        vm.handleNext()
-                    }){
-                        HStack(spacing:0){
-                            Text("次へ進む")
-                                .smallJaBold()
-                                .foregroundColor(.text)
-                                .padding(.bottom, 1)
-                        }
-                        .frame(maxWidth:.infinity)
-                        .frame(height: 56)
-                        .background(LinearGradient(gradient: Color.learnGrad, startPoint: .leading, endPoint: .trailing))
-                        .opacity(vm.isCompleted ? 1 : 0.3)
-                        .cornerRadius(12)
-                    }
-                    .buttonStyle(GrowingButton())
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 48)
+                        .frame(height: 32)
                 }
             } else if(vm.route == .result) {
                 ResultView(eo: self.eo, phraseNum: vm.sessions.count ?? 0, correctNum: vm.correctNum)

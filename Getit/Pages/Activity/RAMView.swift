@@ -5,7 +5,7 @@
 //  Created by kaorulego5x on 14/9/22.
 //
 
-import SwiftUIgit 
+import SwiftUI
 import WrappingHStack
 
 struct RAMView: View {
@@ -27,6 +27,17 @@ struct RAMView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12){
+            HStack(){
+                Icon(IconName.sound, 15)
+                    .foregroundColor(Color.text)
+                
+                Text("声に出そう！")
+                    .smallJaBold()
+                    .foregroundColor(Color.text)
+                
+                Spacer()
+            }
+           
             Text(session.phrase.ja)
                 .mainJa()
                 .foregroundColor(Color.white)
@@ -36,6 +47,26 @@ struct RAMView: View {
                     .getit()
                     .foregroundColor(part.isSpeeched ? Color.white : Color.white.opacity(0.5))
             }
+            
+            Spacer()
+            
+            Button(action:{
+                self.handleNext()
+            }){
+                HStack(spacing:0){
+                    Text("次へ進む")
+                        .smallJaBold()
+                        .foregroundColor(.text)
+                        .padding(.bottom, 1)
+                }
+                .frame(maxWidth:.infinity)
+                .frame(height: 56)
+                .background(LinearGradient(gradient: Color.learnGrad, startPoint: .leading, endPoint: .trailing))
+                .opacity(self.isCompleted ? 1 : 0.3)
+                .cornerRadius(12)
+            }
+            .buttonStyle(GrowingButton())
+            .disabled(!self.isCompleted)
         }
         .padding(.horizontal, 20)
         .onChange(of: speechRecognizer.transcript) { value in
