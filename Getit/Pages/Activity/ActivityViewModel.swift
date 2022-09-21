@@ -17,7 +17,7 @@ enum ActivityRoute: String {
 }
 
 enum SessionType: String {
-    case rfm = "rfm"
+    case ram = "ram"
     case idiom = "idiom"
     case shuffle = "shuffle"
 }
@@ -67,7 +67,7 @@ class ActivityViewModel: ObservableObject {
         self.isCompleted = false
         let session = sessions[sessionIndex]
         switch(session.sessionType) {
-        case .rfm:
+        case .ram:
             self.enParts = session.phrase.en.components(separatedBy: " ").map { component in
                 return EnPart(text: component, isSpeeched: false, id: UUID())
             }
@@ -94,7 +94,7 @@ class ActivityViewModel: ObservableObject {
                     }
                 }
             }, receiveValue: { phrases in
-                self.sessions = phrases.map { phrase in
+                self.sessions = phrases.shuffled().map { phrase in
                     self.getSessionList(phrase: phrase, unitType: unit.type)
                 }.flatMap { $0 }
                 self.route = .activity
@@ -108,12 +108,12 @@ class ActivityViewModel: ObservableObject {
         var res: [Session] = []
         switch unitType {
         case .single:
-            res.append(Session(phrase: phrase, sessionType: .rfm))
+            res.append(Session(phrase: phrase, sessionType: .ram))
         case .idiom:
-            res.append(Session(phrase: phrase, sessionType: .rfm))
+            res.append(Session(phrase: phrase, sessionType: .ram))
             res.append(Session(phrase: phrase, sessionType: .idiom))
         case .practical:
-            res.append(Session(phrase: phrase, sessionType: .rfm))
+            res.append(Session(phrase: phrase, sessionType: .ram))
             res.append(Session(phrase: phrase, sessionType: .shuffle))
         }
         return res

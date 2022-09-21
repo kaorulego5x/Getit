@@ -47,8 +47,8 @@ struct ActivityView: View {
                     
                     if let session = vm.currentSession {
                         switch(session.sessionType) {
-                        case .rfm:
-                            RFMView(session: session, enParts: vm.enParts, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
+                        case .ram:
+                            RAMView(session: session, enParts: vm.enParts, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
                         case .shuffle:
                             ShuffleView()
                         case .idiom:

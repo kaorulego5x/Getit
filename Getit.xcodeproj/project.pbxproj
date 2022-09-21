@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD23840528D1CE19003FBD74 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */; };
-		CD23840728D1FF05003FBD74 /* RFMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840628D1FF05003FBD74 /* RFMView.swift */; };
+		CD23840728D1FF05003FBD74 /* RAMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840628D1FF05003FBD74 /* RAMView.swift */; };
 		CD23840928D1FF22003FBD74 /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840828D1FF22003FBD74 /* ShuffleView.swift */; };
 		CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD23840A28D1FF2A003FBD74 /* IdiomView.swift */; };
 		CD52053A288D69DE00ECA297 /* MasterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD520539288D69DE00ECA297 /* MasterData.swift */; };
@@ -74,7 +74,7 @@
 
 /* Begin PBXFileReference section */
 		CD23840428D1CE19003FBD74 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
-		CD23840628D1FF05003FBD74 /* RFMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFMView.swift; sourceTree = "<group>"; };
+		CD23840628D1FF05003FBD74 /* RAMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMView.swift; sourceTree = "<group>"; };
 		CD23840828D1FF22003FBD74 /* ShuffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleView.swift; sourceTree = "<group>"; };
 		CD23840A28D1FF2A003FBD74 /* IdiomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomView.swift; sourceTree = "<group>"; };
 		CD520539288D69DE00ECA297 /* MasterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterData.swift; sourceTree = "<group>"; };
@@ -311,9 +311,9 @@
 			children = (
 				CD52054C2892B55400ECA297 /* ActivityView.swift */,
 				CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */,
-				CD23840628D1FF05003FBD74 /* RFMView.swift */,
-				CD23840828D1FF22003FBD74 /* ShuffleView.swift */,
+				CD23840628D1FF05003FBD74 /* RAMView.swift */,
 				CD23840A28D1FF2A003FBD74 /* IdiomView.swift */,
+				CD23840828D1FF22003FBD74 /* ShuffleView.swift */,
 				CD9CC36428C4A7B300224FC7 /* ResultView.swift */,
 				CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */,
 			);
@@ -536,7 +536,7 @@
 				CD52053C288D6E8F00ECA297 /* User.swift in Sources */,
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
-				CD23840728D1FF05003FBD74 /* RFMView.swift in Sources */,
+				CD23840728D1FF05003FBD74 /* RAMView.swift in Sources */,
 				CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */,
 				CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,

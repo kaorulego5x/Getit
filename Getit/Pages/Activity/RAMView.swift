@@ -1,14 +1,14 @@
 //
-//  RFMView.swift
+//  RAMView.swift
 //  Getit
 //
 //  Created by kaorulego5x on 14/9/22.
 //
 
-import SwiftUI
+import SwiftUIgit 
 import WrappingHStack
 
-struct RFMView: View {
+struct RAMView: View {
     var session: Session
     var enParts: [EnPart]
     var handleNext: () -> Void;
@@ -53,7 +53,7 @@ struct RFMView: View {
     }
 }
 
-struct RFMView_Previews: PreviewProvider {
+struct RAMView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
