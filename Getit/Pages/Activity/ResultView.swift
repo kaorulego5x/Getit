@@ -20,30 +20,16 @@ struct ResultView: View {
         self._vm = StateObject(wrappedValue: ResultViewModel(eo: eo))
     }
     
+    var messages = ["Good Job! Keep it up!", "Fantastic!"]
+    
     var body: some View {
         VStack(){
             Spacer()
             
-            VStack(spacing: 16){
-                Text("Result")
-                    .getit()
-                    .foregroundColor(Color.white)
-                
+            VStack(spacing: 16) {
                 HStack(spacing: 8){
-                    Text(String(phraseNum))
+                    Text(messages.randomElement()!)
                         .getit()
-                        .foregroundColor(Color.white)
-                    
-                    Text("問中")
-                        .mainJaBold()
-                        .foregroundColor(Color.white)
-                    
-                    Text(String(correctNum))
-                        .getit()
-                        .foregroundColor(Color.white)
-                    
-                    Text("問正解！")
-                        .mainJaBold()
                         .foregroundColor(Color.white)
                 }
             }
@@ -65,7 +51,7 @@ struct ResultView: View {
                 .cornerRadius(12)
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 48)
+            .padding(.bottom, 32)
         }
         .onAppear(){
             self.vm.completeUnit()

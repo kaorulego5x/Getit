@@ -22,6 +22,7 @@ enum IconName: String {
     case check = "check"
     case down = "arrow-down"
     case next = "arrow"
+    case squarePlus = "plus-square"
 }
 
 struct Icon: View {

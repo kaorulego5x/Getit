@@ -36,7 +36,7 @@ struct NextUpCard: View {
                                 .foregroundColor(Color.white)
                             
                             HStack(alignment: .bottom, spacing: 3){
-                                Text("#\(nextUp.unitId.components(separatedBy: "-")[1])")
+                                Text("#\(String((Int(nextUp.unitId.components(separatedBy: "-")[1]) ?? 0) + 1))")
                                     .exLgBold()
                                     .foregroundColor(Color.white)
                             }

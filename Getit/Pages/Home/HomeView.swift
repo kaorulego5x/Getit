@@ -66,7 +66,7 @@ struct HomeView: View {
                                 .foregroundColor(Color.white)
                                 .frame(width: 64, alignment: .leading)
                             
-                            Text(String(vm.masterData.totalPhraseNum))
+                            Text(String(vm.masterData.totalPhraseNum - vm.user.phraseNum))
                                 .mainBold()
                                 .foregroundColor(Color.white)
                         }
@@ -129,7 +129,7 @@ struct HomeView: View {
                 }
                 .buttonStyle(GrowingButton())
                 .padding(.horizontal, 20)
-                .padding(.bottom, 48)
+                .padding(.bottom, 32)
             }
             .navigationBarTitle("")
             .navigationBarHidden(true)

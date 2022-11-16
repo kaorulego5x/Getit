@@ -36,27 +36,25 @@ class SpeechRecognizer: ObservableObject {
     
     init() {
         recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en_US"))
-        
-        
-            do {
-                guard recognizer != nil else {
-                    throw RecognizerError.nilRecognizer
+        do {
+            guard recognizer != nil else {
+                throw RecognizerError.nilRecognizer
+            }
+            SFSpeechRecognizer.requestAuthorization { (status) in
+                guard status == .authorized else {
+                    print("音声認識が認可されていません")
+                    return
                 }
-                SFSpeechRecognizer.requestAuthorization { (status) in
-                    guard status == .authorized else {
-                        print("音声認識が認可されていません")
+                AVAudioSession.sharedInstance().requestRecordPermission { (authorized) in
+                    guard authorized else {
+                        print("音声入力が認可されていません")
                         return
                     }
-                    AVAudioSession.sharedInstance().requestRecordPermission { (authorized) in
-                        guard authorized else {
-                            print("音声入力が認可されていません")
-                            return
-                        }
-                    }
                 }
-            } catch {
-                speakError(error)
             }
+        } catch {
+            speakError(error)
+        }
     }
     
     deinit {
@@ -64,7 +62,7 @@ class SpeechRecognizer: ObservableObject {
     }
     
     func transcribe() {
-        DispatchQueue(label: "Speech Recognizer Queue", qos: .background).async { [weak self] in
+        DispatchQueue(label: "Speech Recognizer Queue", qos: .userInteractive).async { [weak self] in
             guard let self = self, let recognizer = self.recognizer, recognizer.isAvailable else {
                 self?.speakError(RecognizerError.recognizerIsUnavailable)
                 return

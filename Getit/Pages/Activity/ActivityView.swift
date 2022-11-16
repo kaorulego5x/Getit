@@ -38,7 +38,7 @@ struct ActivityView: View {
                         Button(action: {
                             eo.transit(Tab.home)
                         }){
-                            Icon(IconName.x, 30)
+                            Icon(IconName.x, 18)
                                 .foregroundColor(Color.subText)
                         }
                     }
@@ -49,11 +49,11 @@ struct ActivityView: View {
                     if let session = vm.currentSession {
                         switch(session.sessionType) {
                         case .ram:
-                            RAMView(session: session, enParts: vm.enParts, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
+                            RAMView(session: session, enParts: vm.enParts, sessionIndex: vm.sessionIndex, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
                         case .idiom:
                             IdiomView(session: session, idiomChoices: vm.idiomChoices, displayIdiomChoices: vm.displayIdiomChoices, selectedChoiceIndex: vm.selectedChoiceIndex, isIdiomChoiceDone: vm.isIdiomChoiceDone, selectChoice: vm.selectChoice, validateIdiomChoice: vm.validateIdiomChoice, handleNext: vm.handleNext)
                         case .shuffle:
-                            ShuffleView()
+                            ShuffleView(session: session, blanks: vm.blanks, answers: vm.answers, candidates: vm.candidates, selectedCandidates: vm.selectedCandidates, shuffleStatus: vm.shuffleStatus, selectShuffleCandidate: vm.selectShuffleCandidate, unselectShuffleCandidate: vm.unselectShuffleCandidate, handleNext: vm.handleNext, validateShuffleChoice: vm.validateShuffleChoice)
                         }
                     }
                     

@@ -78,6 +78,10 @@ public extension Text {
         self.font(.custom("Montserrat-Bold", size: 18))
     }
     
+    func lgJa() -> some View {
+        self.font(.custom("NotoSansJP-Medium", size: 18))
+    }
+    
     func lg() -> some View {
         self.font(.custom("Montserrat-Medium", size: 18))
     }
@@ -108,6 +112,10 @@ public extension Text {
     
     func smallJaBold() -> some View {
         self.font(.custom("NotoSansJP-Bold", size:14))
+    }
+    
+    func smallBold() -> some View {
+        self.font(.custom("Montserrat-SemiBold", size: 14))
     }
     
     func exSmall() -> some View {

@@ -42,6 +42,7 @@ struct GetitApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(AppViewModel())
+                .preferredColorScheme(.dark)
         }
     }
 }

@@ -16,4 +16,5 @@ struct User: Codable {
     let id: String
     var progress: [Progress]
     var phraseNum: Int
+    var nextUp: String
 }

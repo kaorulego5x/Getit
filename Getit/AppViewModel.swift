@@ -94,7 +94,7 @@ class AppViewModel: ObservableObject {
     
     func register(userId: String, _ masterData: MasterData) {
         let progress = masterData.words.map { return Progress(word: $0.word, index: 0)}
-        let newUser = User(id: userId, progress: progress, phraseNum: 0)
+        let newUser = User(id: userId, progress: progress, phraseNum: 0, nextUp: "get-0")
         userRepository.post(newUser)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -122,20 +122,48 @@ class AppViewModel: ObservableObject {
             let word = unit.unitId.components(separatedBy: "-")[0]
             let index = Int(unit.unitId.components(separatedBy: "-")[1])!
             if var user = user {
-                if let wordIndex = user.progress.firstIndex(where: { $0.word == word }) {
-                    if(user.progress[wordIndex].index == index) {
-                        user.progress[wordIndex].index += 1
-                        self.user = user
-                        userRepository.updateProgress(id: user.id, progress: user.progress)
-                            .sink(receiveCompletion: { completion in
-                                switch completion {
-                                case .finished: break;
-                                case .failure(let error): print(error)
+                if let masterData = masterData {
+                    if let wordIndex = user.progress.firstIndex(where: { $0.word == word }) {
+                        if(user.progress[wordIndex].index == index) {
+                            user.progress[wordIndex].index += 1
+                            user.phraseNum += 1
+                            
+                            let word = user.nextUp.components(separatedBy: "-")[0]
+                            let index = Int(user.nextUp.components(separatedBy: "-")[1])!
+                            let tempNext = "\(word)-\(String(index+1))"
+                            var isNextExist = false
+                            for word in masterData.words {
+                                for unit in word.units {
+                                    if (unit.unitId == tempNext) {
+                                        isNextExist = true
+                                        user.nextUp = tempNext
+                                    }
                                 }
-                            }, receiveValue: { _ in
-                                print("updated progress")
-                            })
-                            .store(in: &cancellables)
+                            }
+                            if(!isNextExist) {
+                                for word in masterData.words {
+                                    let progress = user.progress.first(where: {$0.word == word.word})
+                                    if let progress = progress {
+                                        if (word.units.count == progress.index + 1) { continue }
+                                        user.nextUp = word.units[progress.index].unitId
+                                        return
+                                    } else {
+                                        print("Word didn't match")
+                                    }
+                                }
+                            }
+                            self.user = user
+                            userRepository.updateProgress(id: user.id, progress: user.progress, phraseNum: user.phraseNum+1, nextUp: user.nextUp)
+                                .sink(receiveCompletion: { completion in
+                                    switch completion {
+                                    case .finished: break;
+                                    case .failure(let error): print(error)
+                                    }
+                                }, receiveValue: { _ in
+                                    print("updated progress")
+                                })
+                                .store(in: &cancellables)
+                        }
                     }
                 }
             }

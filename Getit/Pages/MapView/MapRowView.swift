@@ -27,7 +27,7 @@ struct MapRowView: View {
                         HStack(spacing: 10){
                             if(unitIndex < progress.index) {
                                 HStack {
-                                    Text(unit.unitId.components(separatedBy: "-")[1])
+                                    Text(String((Int(unit.unitId.components(separatedBy: "-")[1]) ?? 0) + 1))
                                         .mainBold()
                                         .foregroundColor(Color.white)
                                 }
@@ -36,7 +36,7 @@ struct MapRowView: View {
                                 .cornerRadius(12)
                             } else {
                                 HStack {
-                                    Text(unit.unitId.components(separatedBy: "-")[1])
+                                    Text(String((Int(unit.unitId.components(separatedBy: "-")[1]) ?? 0) + 1))
                                         .mainBold()
                                         .foregroundColor(Color.white)
                                 }

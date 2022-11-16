@@ -38,6 +38,23 @@ struct IdiomChoice {
     var isCorrect: Bool
 }
 
+struct ShuffleCandidate {
+    var text: String
+    var position: Int
+}
+
+struct ShuffleBlank {
+    var isBlank: Bool
+    var answerIndex: Int
+    var placeHolder: String
+}
+
+enum ShuffleStatus: String {
+    case selecting = "selecting"
+    case correct = "correct"
+    case incorrect = "incorrect"
+}
+
 let randomChoices: [String] = ["on", "in", "it", "down", "upon", "to", "up"]
 
 class ActivityViewModel: ObservableObject {
@@ -61,17 +78,31 @@ class ActivityViewModel: ObservableObject {
     @Published var selectedChoiceIndex: Int = -1
     @Published var isIdiomChoiceDone: Bool = false
     
+    // Shuffle
+    @Published var blanks: [ShuffleBlank] =  []
+    @Published var answers: [String] = []
+    @Published var candidates: [ShuffleCandidate] = []
+    @Published var selectedCandidates: [ShuffleCandidate] = []
+    @Published var shuffleStatus: ShuffleStatus = ShuffleStatus.selecting
+    
     init(eo: AppViewModel) {
         self.eo = eo
     }
     
     func handleNext() {
         if(sessionIndex >= sessions.count - 1) {
-            self.route = .result
+            self.handleComplete()
         } else {
-            self.sessionIndex += 1
-            self.resetSession()
+            withAnimation(.easeOut(duration:0.1)) {
+                self.sessionIndex += 1
+                self.resetSession()
+            }
         }
+    }
+    
+    func handleComplete() {
+        self.route = .result
+        self.eo.levelUp()
     }
     
     func resetSession() {
@@ -82,15 +113,24 @@ class ActivityViewModel: ObservableObject {
         self.displayIdiomChoices = []
         self.selectedChoiceIndex = -1
         self.isIdiomChoiceDone = false
+        self.blanks = []
+        self.answers = []
+        self.candidates = []
+        self.selectedCandidates = []
+        self.shuffleStatus = ShuffleStatus.selecting
+        
         let session = sessions[sessionIndex]
         switch(session.sessionType) {
         case .ram:
             self.enParts = session.phrase.en.components(separatedBy: " ").map { component in
                 return EnPart(text: component.replacingOccurrences(of: "`", with: ""), isSpeeched: false, id: UUID())
             }
+            self.assistSpeech(self.sessionIndex);
         case .idiom:
-            let correctAnswer = session.phrase.en.components(separatedBy: " ").first(where: { $0.contains("`") })?.replacingOccurrences(of: "`", with: "")
-            if let correctAnswer = correctAnswer?.lowercased() {
+            let correctPart = session.phrase.en.components(separatedBy: " ").first(where: { $0.contains("`") })
+            if let correctPart = correctPart {
+                let correctMatches = matches(for: "`.*`", in: correctPart)
+                let correctAnswer = correctMatches[0].replacingOccurrences(of: "`", with: "").lowercased()
                 self.idiomChoices.append(IdiomChoice(text: correctAnswer, isCorrect: true))
                 let otherChoices = randomChoices.filter { $0 != correctAnswer }.shuffled()
                 for i in 0..<4 {
@@ -101,7 +141,48 @@ class ActivityViewModel: ObservableObject {
                 print("Idiom not found")
             }
         case .shuffle:
+            var answerIndex = 0
+            for component in session.phrase.en.components(separatedBy: " ") {
+                let textAndClutter = getTextAndClutter(component)
+                if (textAndClutter.count == 2) {
+                    self.blanks.append(ShuffleBlank(isBlank: true, answerIndex: answerIndex, placeHolder: ""))
+                    answerIndex += 1
+                    self.blanks.append(ShuffleBlank(isBlank: false, answerIndex: 0, placeHolder: textAndClutter[1]))
+                    self.answers.append(textAndClutter[0])
+                } else if (textAndClutter[0] == "-") {
+                    self.blanks.append(ShuffleBlank(isBlank: false, answerIndex: 0, placeHolder: "-"))
+                } else {
+                    self.blanks.append(ShuffleBlank(isBlank: true, answerIndex: answerIndex, placeHolder: ""))
+                    answerIndex += 1
+                    self.answers.append(textAndClutter[0])
+                }
+            }
+            self.candidates = self.answers.shuffled().enumerated().map { (index, answer) in
+                return ShuffleCandidate(text: answer, position: index)
+            }
             return
+        }
+    }
+    
+    let clutters = ["...", "!?", "!!", "?!", "!", "?", ".", ","]
+    
+    func getTextAndClutter(_ text: String) -> [String] {
+        let textLen = text.count
+        for clutter in clutters {
+            let clutterLen = clutter.count
+            if (text.contains(clutter)) {
+                return [text.substring(to: textLen - clutterLen).lowercased(), text.substring(from: textLen - clutterLen).lowercased()]
+            }
+        }
+        return [text.lowercased()]
+    }
+    
+    func assistSpeech(_ idx: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            print(idx, self.sessionIndex)
+            if(idx == self.sessionIndex) {
+                self.handleSpeechCompleted()
+            }
         }
     }
     
@@ -121,9 +202,10 @@ class ActivityViewModel: ObservableObject {
                     }
                 }
             }, receiveValue: { phrases in
-                self.sessions = phrases.shuffled().map { phrase in
+                let tempSessions = phrases.shuffled().map { phrase in
                     self.getSessionList(phrase: phrase, unitType: unit.type)
                 }.flatMap { $0 }
+                self.sessions = self.getShuffledSessionList(tempSessions)
                 self.route = .activity
                 self.resetSession()
             })
@@ -146,6 +228,26 @@ class ActivityViewModel: ObservableObject {
         return res
     }
     
+    func getShuffledSessionList(_ sessionList: [Session]) -> [Session] {
+        var rams: [Session] = []
+        var idioms: [Session] = []
+        var shuffles: [Session] = []
+        for session in sessionList {
+            switch(session.sessionType) {
+            case .ram:
+                rams.append(session)
+                break
+            case .idiom:
+                idioms.append(session)
+                break
+            case .shuffle:
+                shuffles.append(session)
+                break
+            }
+        }
+        return rams.shuffled() + idioms.shuffled() + shuffles.shuffled()
+    }
+    
     // RAM
     func handleSpeechInput(_ transcript: String) {
         let inputParts = transcript.lowercased().components(separatedBy: " ")
@@ -166,7 +268,7 @@ class ActivityViewModel: ObservableObject {
                     self.enParts[index].isSpeeched = true
                 }
                 if(index == enParts.count - 1) {
-                    self.handleCompleted()
+                    self.handleSpeechCompleted()
                 }
                 if(carry == 1) {
                     withAnimation(.easeOut(duration: 0.2)) {
@@ -181,8 +283,13 @@ class ActivityViewModel: ObservableObject {
         }
     }
     
-    private func handleCompleted() {
-        self.isCompleted = true
+    private func handleSpeechCompleted() {
+        for (index, _) in enParts.enumerated() {
+            self.enParts[index].isSpeeched = true;
+        }
+        withAnimation(.easeOut(duration: 0.2)) {
+            self.isCompleted = true
+        }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
@@ -190,7 +297,9 @@ class ActivityViewModel: ObservableObject {
     // Idiom
     func selectChoice(choice: IdiomChoice) {
         if let index = self.idiomChoices.firstIndex(where: {$0.text == choice.text}) {
-            self.selectedChoiceIndex = index
+            withAnimation(.easeOut(duration: 0.2)) {
+                self.selectedChoiceIndex = index
+            }
         } else {
             print("Error occurred when selecting idiom choice")
         }
@@ -202,6 +311,48 @@ class ActivityViewModel: ObservableObject {
         }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(self.selectedChoiceIndex == 0 ? .success : .warning)
+    }
+    
+    // Shuffle
+    func selectShuffleCandidate(candidate: ShuffleCandidate) {
+        self.selectedCandidates.append(candidate)
+    }
+    
+    func unselectShuffleCandidate(candidate: ShuffleCandidate) {
+        let index = self.selectedCandidates.firstIndex(where: {$0.position == candidate.position})
+        if let index = index {
+            self.selectedCandidates.remove(at: index)
+        }
+    }
+    
+    func validateShuffleChoice() {
+        var isCorrect = true
+        for (index, candidate) in self.selectedCandidates.enumerated() {
+            if(candidate.text != self.answers[index]) {
+                isCorrect = false
+                break
+            }
+        }
+        withAnimation(.easeOut(duration: 0.2)) {
+            self.shuffleStatus = (isCorrect ? ShuffleStatus.correct : ShuffleStatus.incorrect)
+        }
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(isCorrect ? .success : .warning)
+    }
+}
+
+func matches(for regex: String, in text: String) -> [String] {
+
+    do {
+        let regex = try NSRegularExpression(pattern: regex)
+        let results = regex.matches(in: text,
+                                    range: NSRange(text.startIndex..., in: text))
+        return results.map {
+            String(text[Range($0.range, in: text)!])
+        }
+    } catch let error {
+        print("invalid regex: \(error.localizedDescription)")
+        return []
     }
 }
 
@@ -248,5 +399,27 @@ extension Speaker: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         self.isSpeaking = false
         try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+    }
+}
+
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
     }
 }

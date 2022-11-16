@@ -19,6 +19,6 @@ class ResultViewModel: ObservableObject {
     }
     
     func completeUnit() {
-        self.eo.levelUp()
+       
     }
 }

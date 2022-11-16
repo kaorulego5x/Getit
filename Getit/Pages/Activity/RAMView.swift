@@ -11,15 +11,17 @@ import WrappingHStack
 struct RAMView: View {
     var session: Session
     var enParts: [EnPart]
+    var sessionIndex: Int
     var handleNext: () -> Void;
     var handleSpeechInput: (String) -> Void;
     @Binding var isCompleted: Bool
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var speaker = Speaker()
     
-    init(session: Session, enParts: [EnPart], handleNext: @escaping () -> Void, handleSpeechInput: @escaping (String) -> Void, isCompleted: Binding<Bool>) {
+    init(session: Session, enParts: [EnPart], sessionIndex: Int, handleNext: @escaping () -> Void, handleSpeechInput: @escaping (String) -> Void, isCompleted: Binding<Bool>) {
         self.session = session
         self.enParts = enParts
+        self.sessionIndex = sessionIndex
         self.handleNext = handleNext
         self.handleSpeechInput = handleSpeechInput
         self._isCompleted = isCompleted
@@ -39,7 +41,7 @@ struct RAMView: View {
             }
            
             Text(session.phrase.ja)
-                .mainJa()
+                .lgJa()
                 .foregroundColor(Color.white)
             
             WrappingHStack(self.enParts) { part in
@@ -54,10 +56,16 @@ struct RAMView: View {
                 self.handleNext()
             }){
                 HStack(spacing:0){
-                    Text("次へ進む")
-                        .smallJaBold()
-                        .foregroundColor(.text)
-                        .padding(.bottom, 1)
+                    if(!self.isCompleted) {
+                        LottieView(name: "listening", loopMode: .loop)
+                                .frame(width: 120, height: 120)
+                                .frame(maxWidth: .infinity)
+                    } else {
+                        Text("次へ進む")
+                            .smallJaBold()
+                            .foregroundColor(.text)
+                            .padding(.bottom, 1)
+                    }
                 }
                 .frame(maxWidth:.infinity)
                 .frame(height: 56)
@@ -77,9 +85,11 @@ struct RAMView: View {
                 speechRecognizer.stopTranscribing()
             }
         }
+        .onChange(of: self.sessionIndex) { value in
+            speechRecognizer.transcribe()
+        }
         .onAppear() {
             speechRecognizer.transcribe()
-            // speaker.speak(session.phrase.en, language: "en-US")
         }
     }
 }

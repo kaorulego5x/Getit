@@ -22,13 +22,10 @@ class HomeViewModel: ObservableObject {
         self.user = eo.user!
         self.progressRate = CGFloat(self.user.phraseNum) / CGFloat(self.masterData.totalPhraseNum)
         for word in self.masterData.words {
-            let progress = self.user.progress.first(where: {$0.word == word.word})
-            if let progress = progress {
-                if (word.units.count == progress.index + 1) { continue }
-                self.nextUp = word.units[progress.index]
-                return
-            } else {
-                print("Word didn't match")
+            for unit in word.units {
+                if (unit.unitId == self.user.nextUp) {
+                    self.nextUp = unit
+                }
             }
         }
     }

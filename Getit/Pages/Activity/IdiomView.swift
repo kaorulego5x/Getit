@@ -23,7 +23,8 @@ struct IdiomView: View {
         self.session = session
         var enComponents = session.phrase.en.components(separatedBy: " ")
         if let blankIndex = enComponents.firstIndex(where: { $0.contains("`")}) {
-            enComponents[blankIndex] = "#"
+            let correctMatches = matches(for: "`.*`", in: enComponents[blankIndex])
+            enComponents[blankIndex] = enComponents[blankIndex].replacingOccurrences(of: correctMatches[0], with: "#")
         } else {
             print("Error occurred while generating en sentence")
         }
@@ -38,15 +39,26 @@ struct IdiomView: View {
     }
     
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 12){
+            HStack(){
+                Icon(IconName.squarePlus, 15)
+                    .foregroundColor(Color.text)
+                
+                Text("空欄を埋めよう！")
+                    .smallJaBold()
+                    .foregroundColor(Color.text)
+                
+                Spacer()
+            }
+            
             Text(session.phrase.ja)
-                .mainJa()
+                .lgJa()
                 .foregroundColor(Color.white)
             
             Text(baseEnSentence.replacingOccurrences(of: "#", with: selectedChoiceIndex >= 0 ? self.idiomChoices[self.selectedChoiceIndex].text : "_"))
                 .getit()
                 .foregroundColor(Color.white)
+                .animation(nil)
             
             Spacer()
             
@@ -66,19 +78,21 @@ struct IdiomView: View {
                             Spacer()
                         }
                     } else {
-                        HStack(){
-                            
+                        HStack {
                             Spacer()
-                            Icon(.x, 18)
-                                .foregroundColor(.orange)
                             
-                            Text("不正解...")
-                                .exLgBold()
-                                .foregroundColor(.orange)
-                            
-                            Text("正解例: \(self.idiomChoices[0].text)")
-                                .exLgBold()
-                                .foregroundColor(.orange)
+                            VStack(alignment: .center){
+                                HStack(){
+                                    Icon(.x, 18)
+                                        .foregroundColor(.orange)
+                                    Text("不正解...")
+                                        .exLgBold()
+                                        .foregroundColor(.orange)
+                                }
+                                Text("正解例: \(self.idiomChoices[0].text)")
+                                    .mainBold()
+                                    .foregroundColor(.orange)
+                            }
                             
                             Spacer()
                         }
