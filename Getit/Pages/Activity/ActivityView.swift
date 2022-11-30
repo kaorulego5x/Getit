@@ -25,7 +25,6 @@ struct ActivityView: View {
             } else if(vm.route == .activity) {
                 VStack(){
                     HStack(){
-                        
                         Text("\(vm.sessionIndex + 1) / \(vm.sessions.count)")
                             .exSmallBold()
                             .foregroundColor(Color.white)

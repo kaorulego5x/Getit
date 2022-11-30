@@ -23,7 +23,7 @@ class AppViewModel: ObservableObject {
     var masterDataRepository = MasterDataRepository()
     var userRepository = UserRepository()
     private var cancellables: [AnyCancellable] = []
-
+    
     deinit {
         cancellables.forEach { cancellable in
             cancellable.cancel()
@@ -54,21 +54,21 @@ class AppViewModel: ObservableObject {
         masterDataRepository
             .get()
             .sink(receiveCompletion: { completion in
-            switch completion {
-            case .finished: break;
-            case .failure(let error):
-                switch error {
-                case FirestoreError.notFoundError:
-                    print(error);
-                default:
-                    print(error)
+                switch completion {
+                case .finished: break;
+                case .failure(let error):
+                    switch error {
+                    case FirestoreError.notFoundError:
+                        print(error);
+                    default:
+                        print(error)
+                    }
                 }
-            }
-        }, receiveValue: { masterData in
-            self.masterData = masterData
-            completion(masterData)
-        })
-        .store(in: &cancellables)
+            }, receiveValue: { masterData in
+                self.masterData = masterData
+                completion(masterData)
+            })
+            .store(in: &cancellables)
     }
     
     func fetchUserData(_ id: String, _ masterData: MasterData) {
@@ -118,55 +118,56 @@ class AppViewModel: ObservableObject {
     }
     
     func levelUp() {
-        if let unit = selectedUnit {
-            let word = unit.unitId.components(separatedBy: "-")[0]
-            let index = Int(unit.unitId.components(separatedBy: "-")[1])!
-            if var user = user {
-                if let masterData = masterData {
-                    if let wordIndex = user.progress.firstIndex(where: { $0.word == word }) {
-                        if(user.progress[wordIndex].index == index) {
-                            user.progress[wordIndex].index += 1
-                            user.phraseNum += 1
-                            
-                            let word = user.nextUp.components(separatedBy: "-")[0]
-                            let index = Int(user.nextUp.components(separatedBy: "-")[1])!
-                            let tempNext = "\(word)-\(String(index+1))"
-                            var isNextExist = false
-                            for word in masterData.words {
-                                for unit in word.units {
-                                    if (unit.unitId == tempNext) {
-                                        isNextExist = true
-                                        user.nextUp = tempNext
-                                    }
-                                }
-                            }
-                            if(!isNextExist) {
-                                for word in masterData.words {
-                                    let progress = user.progress.first(where: {$0.word == word.word})
-                                    if let progress = progress {
-                                        if (word.units.count == progress.index) { continue }
-                                        user.nextUp = word.units[progress.index].unitId
-                                        break
-                                    } else {
-                                        print("Word didn't match")
-                                    }
-                                }
-                            }
-                            self.user = user
-                            userRepository.updateProgress(id: user.id, progress: user.progress, phraseNum: user.phraseNum, nextUp: user.nextUp)
-                                .sink(receiveCompletion: { completion in
-                                    switch completion {
-                                    case .finished: break;
-                                    case .failure(let error): print(error)
-                                    }
-                                }, receiveValue: { _ in
-                                    print("updated progress")
-                                })
-                                .store(in: &cancellables)
-                        }
+        guard let selectedUnit = selectedUnit, var user = user, let masterData = masterData else {
+            return
+        }
+        
+        let unitWord = selectedUnit.unitId.components(separatedBy: "-")[0]
+        let unitIndex = Int(selectedUnit.unitId.components(separatedBy: "-")[1])!
+        guard let unitWordIndex = user.progress.firstIndex(where: { $0.word == unitWord }) else {
+            return
+        }
+        
+        if(user.progress[unitWordIndex].index == unitIndex) {
+            user.progress[unitWordIndex].index += 1
+            user.phraseNum += 1
+            
+            let tempNextUnit = "\(unitWord)-\(String(unitIndex+1))"
+            var isNextExist = false
+            for word in masterData.words {
+                for unit in word.units {
+                    if (unit.unitId == tempNextUnit) {
+                        isNextExist = true
+                        user.nextUp = tempNextUnit
                     }
                 }
             }
+            
+            if(!isNextExist) {
+                for word in masterData.words {
+                    let progress = user.progress.first(where: {$0.word == word.word})
+                    guard let progress = progress else {
+                        print("Word didn't match")
+                        return
+                    }
+                    if (word.units.count == progress.index) { continue }
+                    user.nextUp = word.units[progress.index].unitId
+                    break
+                    
+                }
+            }
+            self.user = user
+            userRepository.updateProgress(id: user.id, progress: user.progress, phraseNum: user.phraseNum, nextUp: user.nextUp)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished: break;
+                    case .failure(let error): print(error)
+                    }
+                }, receiveValue: { _ in
+                    print("updated progress")
+                })
+                .store(in: &cancellables)
+            
         }
     }
 }

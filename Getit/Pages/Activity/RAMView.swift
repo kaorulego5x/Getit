@@ -81,11 +81,11 @@ struct RAMView: View {
             }
         }
         .onChange(of: session) { value in
-            self.vm.reset(self.session)
+            self.vm.reset(self.session, self.sessionIndex)
             speechRecognizer.transcribe()
         }
         .onAppear() {
-            self.vm.reset(self.session)
+            self.vm.reset(self.session, self.sessionIndex)
             speechRecognizer.transcribe()
         }
     }

@@ -13,6 +13,8 @@ struct IdiomChoice {
     var isCorrect: Bool
 }
 
+let randomChoices: [String] = ["on", "in", "it", "down", "upon", "to", "up"]
+
 class IdiomViewModel: ObservableObject {
     @Published var baseEnSentence: String?
     @Published var idiomChoices: [IdiomChoice] = []

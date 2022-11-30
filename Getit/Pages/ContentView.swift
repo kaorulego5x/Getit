@@ -39,102 +39,6 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-
-extension Color {
-    static let bg = Color("bg")
-    static let lightBg = Color("lightBg")
-    static let darkBg = Color("darkBg")
-    static let text = Color("text")
-    static let subText = Color("subText")
-    static let learnGrad = Gradient(colors: [Color("learn1"), Color("learn2")])
-    static let learn1 = Color("learn1")
-    static let learn2 = Color("learn2")
-    static let useGrad = Gradient(colors: [Color("use1"), Color("use2")])
-    static let undone = Color("undone")
-}
-
-public extension Text {
-    func bullet() -> some View {
-        self.font(.custom("Montserrat-Bold", size:48))
-    }
-
-    func getit() -> some View {
-        self.font(.custom("Montserrat-Bold", size:32))
-    }
-
-    func lookup() -> some View {
-        self.font(.custom("Montserrat-Bold", size: 30))
-    }
-    
-    func exLgBold() -> some View {
-        self.font(.custom("Montserrat-Bold", size: 20))
-    }
-    
-    func exLg() -> some View {
-        self.font(.custom("Montserrat-Medium", size: 20))
-    }
-    
-    func lgBold() -> some View {
-        self.font(.custom("Montserrat-Bold", size: 18))
-    }
-    
-    func lgJa() -> some View {
-        self.font(.custom("NotoSansJP-Medium", size: 18))
-    }
-    
-    func lg() -> some View {
-        self.font(.custom("Montserrat-Medium", size: 18))
-    }
-    
-    func mainBold() -> some View {
-        self.font(.custom("Montserrat-SemiBold", size: 16))
-    }
-    
-    func main() -> some View {
-        self.font(.custom("Montserrat-Medium", size: 16))
-    }
-    
-    func mainJa() -> some View {
-        self.font(.custom("NotoSansJP-Medium", size: 16))
-    }
-    
-    func mainJaBold() -> some View {
-        self.font(.custom("NotoSansJP-Bold", size: 16))
-    }
-    
-    func small() -> some View {
-        self.font(.custom("Montserrat-Medium", size:14))
-    }
-    
-    func smallJa() -> some View {
-        self.font(.custom("NotoSansJP-Medium", size:14))
-    }
-    
-    func smallJaBold() -> some View {
-        self.font(.custom("NotoSansJP-Bold", size:14))
-    }
-    
-    func smallBold() -> some View {
-        self.font(.custom("Montserrat-SemiBold", size: 14))
-    }
-    
-    func exSmall() -> some View {
-        self.font(.custom("Montserrat-Medium", size:12))
-    }
-    
-    func exSmallBold() -> some View {
-        self.font(.custom("Montserrat-Bold", size:12))
-    }
-    
-    func exSmallJa() -> some View {
-        self.font(.custom("NotoSansJP-Medium", size:12))
-    }
-    
-    func exSmallJaBold() -> some View {
-        self.font(.custom("NotoSansJP-Bold", size:12))
-    }
-}
-
 extension UIScreen{
    static let screenWidth = UIScreen.main.bounds.size.width
    static let screenHeight = UIScreen.main.bounds.size.height
@@ -144,4 +48,41 @@ extension UIScreen{
 extension StringProtocol {
     var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
     var firstCapitalized: String { prefix(1).capitalized + dropFirst() }
+}
+
+func matches(for regex: String, in text: String) -> [String] {
+
+    do {
+        let regex = try NSRegularExpression(pattern: regex)
+        let results = regex.matches(in: text,
+                                    range: NSRange(text.startIndex..., in: text))
+        return results.map {
+            String(text[Range($0.range, in: text)!])
+        }
+    } catch let error {
+        print("invalid regex: \(error.localizedDescription)")
+        return []
+    }
+}
+
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
+    }
 }

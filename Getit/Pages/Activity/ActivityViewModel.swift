@@ -30,8 +30,6 @@ struct Session: Equatable {
     }
 }
 
-let randomChoices: [String] = ["on", "in", "it", "down", "upon", "to", "up"]
-
 class ActivityViewModel: ObservableObject {
     let eo: AppViewModel
     let phraseRepository = PhraseRepository()
@@ -128,88 +126,5 @@ class ActivityViewModel: ObservableObject {
             }
         }
         return rams.shuffled() + idioms.shuffled() + shuffles.shuffled()
-    }
-}
-
-func matches(for regex: String, in text: String) -> [String] {
-
-    do {
-        let regex = try NSRegularExpression(pattern: regex)
-        let results = regex.matches(in: text,
-                                    range: NSRange(text.startIndex..., in: text))
-        return results.map {
-            String(text[Range($0.range, in: text)!])
-        }
-    } catch let error {
-        print("invalid regex: \(error.localizedDescription)")
-        return []
-    }
-}
-
-internal class Speaker: NSObject, ObservableObject {
-    internal var errorDescription: String? = nil
-    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
-    @Published var isSpeaking: Bool = false
-    @Published var isShowingSpeakingErrorAlert: Bool = false
-
-    override init() {
-        super.init()
-        self.synthesizer.delegate = self
-    }
-
-    internal func speak(_ text: String, language: String) {
-        do {
-            let utterance = AVSpeechUtterance(string: text)
-            utterance.voice = AVSpeechSynthesisVoice(language: language)
-            
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            self.synthesizer.speak(utterance)
-        } catch let error {
-            self.errorDescription = error.localizedDescription
-            isShowingSpeakingErrorAlert.toggle()
-        }
-    }
-    
-    internal func stop() {
-        self.synthesizer.stopSpeaking(at: .immediate)
-    }
-}
-
-extension Speaker: AVSpeechSynthesizerDelegate {
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-        self.isSpeaking = true
-    }
-    
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        self.isSpeaking = false
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-    }
-    
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        self.isSpeaking = false
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-    }
-}
-
-extension String {
-    func index(from: Int) -> Index {
-        return self.index(startIndex, offsetBy: from)
-    }
-
-    func substring(from: Int) -> String {
-        let fromIndex = index(from: from)
-        return String(self[fromIndex...])
-    }
-
-    func substring(to: Int) -> String {
-        let toIndex = index(from: to)
-        return String(self[..<toIndex])
-    }
-
-    func substring(with r: Range<Int>) -> String {
-        let startIndex = index(from: r.lowerBound)
-        let endIndex = index(from: r.upperBound)
-        return String(self[startIndex..<endIndex])
     }
 }

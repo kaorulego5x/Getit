@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 import SwiftUI
 
 struct EnPart: Identifiable {
@@ -17,20 +18,15 @@ struct EnPart: Identifiable {
 class RAMViewModel: ObservableObject {
     @Published var enParts: [EnPart] = []
     @Published var isCompleted: Bool = false
-    // let assistSpeech: (Int) -> Void;
+    @Published var sessionIndex: Int = 0
     
-    /*
-    init(assistSpeech: @escaping (Int) -> Void) {
-        self.assistSpeech = assistSpeech
-    }
-    */
-    
-    func reset(_ session: Session) {
+    func reset(_ session: Session, _ sessionIndex: Int) {
+        self.sessionIndex = sessionIndex
         self.enParts = session.phrase.en.components(separatedBy: " ").map { component in
             return EnPart(text: component.replacingOccurrences(of: "`", with: ""), isSpeeched: false, id: UUID())
         }
         self.isCompleted = false
-        // self.assistSpeech(0);
+        self.assistSpeech(sessionIndex);
     }
     
     func handleSpeechInput(_ transcript: String) {
@@ -76,5 +72,59 @@ class RAMViewModel: ObservableObject {
         }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+    }
+    
+    func assistSpeech(_ idx: Int) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            if(idx == self.sessionIndex) {
+                self.handleSpeechCompleted()
+            }
+        }
+    }
+}
+
+internal class Speaker: NSObject, ObservableObject {
+    internal var errorDescription: String? = nil
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
+    @Published var isSpeaking: Bool = false
+    @Published var isShowingSpeakingErrorAlert: Bool = false
+
+    override init() {
+        super.init()
+        self.synthesizer.delegate = self
+    }
+
+    internal func speak(_ text: String, language: String) {
+        do {
+            let utterance = AVSpeechUtterance(string: text)
+            utterance.voice = AVSpeechSynthesisVoice(language: language)
+            
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            self.synthesizer.speak(utterance)
+        } catch let error {
+            self.errorDescription = error.localizedDescription
+            isShowingSpeakingErrorAlert.toggle()
+        }
+    }
+    
+    internal func stop() {
+        self.synthesizer.stopSpeaking(at: .immediate)
+    }
+}
+
+extension Speaker: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        self.isSpeaking = true
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        self.isSpeaking = false
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        self.isSpeaking = false
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 }
