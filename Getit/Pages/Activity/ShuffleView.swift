@@ -9,32 +9,17 @@ import SwiftUI
 import WrappingHStack
 
 struct ShuffleView: View {
-    var session: Session
-    var blanks: [ShuffleBlank]
-    var answers: [String]
-    var candidates: [ShuffleCandidate]
-    var selectedCandidates: [ShuffleCandidate]
-    var shuffleStatus: ShuffleStatus
-    var selectShuffleCandidate: (ShuffleCandidate) -> Void
-    var unselectShuffleCandidate: (ShuffleCandidate) -> Void
+    @Binding var session: Session
     var handleNext: () -> Void
-    var validateShuffleChoice: () -> Void
+    var vm = ShuffleViewModel()
     
-    init(session: Session, blanks: [ShuffleBlank], answers: [String], candidates: [ShuffleCandidate], selectedCandidates: [ShuffleCandidate], shuffleStatus: ShuffleStatus, selectShuffleCandidate: @escaping (ShuffleCandidate) -> Void, unselectShuffleCandidate: @escaping (ShuffleCandidate) -> Void, handleNext: @escaping () -> Void, validateShuffleChoice: @escaping () -> Void) {
-        self.session = session
-        self.blanks = blanks
-        self.answers = answers
-        self.candidates = candidates
-        self.selectedCandidates = selectedCandidates
-        self.shuffleStatus = shuffleStatus
-        self.selectShuffleCandidate = selectShuffleCandidate
-        self.unselectShuffleCandidate = unselectShuffleCandidate
+    init(session: Binding<Session>, handleNext: @escaping () -> Void) {
+        self._session = session
         self.handleNext = handleNext
-        self.validateShuffleChoice = validateShuffleChoice
     }
     
     var body: some View {
-        let isChoiceDone = self.selectedCandidates.count == self.answers.count
+        let isChoiceDone = self.vm.selectedCandidates.count == self.vm.answers.count
         VStack(alignment: .leading, spacing: 12){
             HStack(){
                 Icon(IconName.squarePlus, 15)
@@ -51,19 +36,19 @@ struct ShuffleView: View {
                 .lgJa()
                 .foregroundColor(Color.white)
             
-            WrappingHStack(self.blanks, alignment: .leading) { blank in
+            WrappingHStack(self.vm.blanks, alignment: .leading) { blank in
                 Group {
                     if(blank.isBlank) {
-                        if(self.selectedCandidates.count <= blank.answerIndex) {
+                        if(self.vm.selectedCandidates.count <= blank.answerIndex) {
                             HStack{}
                                 .frame(width: 48, height: 32)
                                 .background(Color.darkBg)
                                 .cornerRadius(12)
                         } else {
                             Button(action: {
-                                self.unselectShuffleCandidate(self.selectedCandidates[blank.answerIndex])
+                                self.vm.unselectShuffleCandidate(self.vm.selectedCandidates[blank.answerIndex])
                             }) {
-                                Text(blank.answerIndex == 0 || (blank.answerIndex > 0 && self.blanks[blank.answerIndex - 1].placeHolder == "-") ? self.selectedCandidates[blank.answerIndex].text.firstUppercased : self.selectedCandidates[blank.answerIndex].text)
+                                Text(blank.answerIndex == 0 || (blank.answerIndex > 0 && self.vm.blanks[blank.answerIndex - 1].placeHolder == "-") ? self.vm.selectedCandidates[blank.answerIndex].text.firstUppercased : self.vm.selectedCandidates[blank.answerIndex].text)
                                     .smallBold()
                                     .foregroundColor(Color.white)
                                     .frame(height: 32)
@@ -87,7 +72,7 @@ struct ShuffleView: View {
             Spacer()
             
             HStack() {
-                if(self.shuffleStatus == .correct) {
+                if(self.vm.shuffleStatus == .correct) {
                     HStack(){
                         Spacer()
                         Icon(.check, 18)
@@ -97,7 +82,7 @@ struct ShuffleView: View {
                             .foregroundColor(.white)
                         Spacer()
                     }
-                } else if(self.shuffleStatus == .incorrect) {
+                } else if(self.vm.shuffleStatus == .incorrect) {
                     HStack() {
                         Spacer()
                         
@@ -120,10 +105,10 @@ struct ShuffleView: View {
                 }
             }
             
-            WrappingHStack(candidates, alignment: .center) { choice in
-                let isSelected = selectedCandidates.contains(where: {$0.position == choice.position})
+            WrappingHStack(self.vm.candidates, alignment: .center) { choice in
+                let isSelected = self.vm.selectedCandidates.contains(where: {$0.position == choice.position})
                 Button(action: {
-                    self.selectShuffleCandidate(choice)
+                    self.vm.selectShuffleCandidate(choice)
                 }) {
                     Text(choice.text)
                         .mainBold()
@@ -143,14 +128,14 @@ struct ShuffleView: View {
             }
             
             Button(action:{
-                if(self.shuffleStatus == ShuffleStatus.selecting) {
-                    self.validateShuffleChoice()
+                if(self.vm.shuffleStatus == .selecting) {
+                    self.vm.validateShuffleChoice()
                 } else {
                     self.handleNext()
                 }
             }){
                 HStack(spacing:0){
-                    Text(self.shuffleStatus == ShuffleStatus.selecting ? "送信" : "次へ進む")
+                    Text(self.vm.shuffleStatus == .selecting ? "送信" : "次へ進む")
                         .smallJaBold()
                         .foregroundColor(.text)
                         .padding(.bottom, 1)
@@ -166,6 +151,12 @@ struct ShuffleView: View {
             .buttonStyle(GrowingButton())
         }
         .padding(.horizontal, 20)
+        .onChange(of: self.session) { newSession in
+            self.vm.reset(newSession)
+        }
+        .onAppear() {
+            self.vm.reset(self.session)
+        }
     }
 }
 

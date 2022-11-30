@@ -19,6 +19,9 @@
 		CD8732A62900090D001AA69C /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8732A52900090D001AA69C /* LottieView.swift */; };
 		CD8732AA29000AF7001AA69C /* listening.json in Resources */ = {isa = PBXBuildFile; fileRef = CD8732A929000AF7001AA69C /* listening.json */; };
 		CD8928142937887C00A812AB /* RAMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8928132937887C00A812AB /* RAMViewModel.swift */; };
+		CD892816293791DC00A812AB /* IdiomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892815293791DC00A812AB /* IdiomViewModel.swift */; };
+		CD8928182937962B00A812AB /* ShuffleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8928172937962B00A812AB /* ShuffleViewModel.swift */; };
+		CD89281B293796A100A812AB /* clutterCutter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD89281A293796A100A812AB /* clutterCutter.swift */; };
 		CD8C42C428DA052100356824 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = CD8C42C328DA052100356824 /* WrappingHStack */; };
 		CD9CC33C28BFC7C000224FC7 /* NotoSansJP-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */; };
 		CD9CC33F28BFC8B000224FC7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC33E28BFC8B000224FC7 /* MapView.swift */; };
@@ -88,6 +91,9 @@
 		CD8732A52900090D001AA69C /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		CD8732A929000AF7001AA69C /* listening.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = listening.json; path = ../../../../../Downloads/listening.json; sourceTree = "<group>"; };
 		CD8928132937887C00A812AB /* RAMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMViewModel.swift; sourceTree = "<group>"; };
+		CD892815293791DC00A812AB /* IdiomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdiomViewModel.swift; sourceTree = "<group>"; };
+		CD8928172937962B00A812AB /* ShuffleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleViewModel.swift; sourceTree = "<group>"; };
+		CD89281A293796A100A812AB /* clutterCutter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = clutterCutter.swift; sourceTree = "<group>"; };
 		CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Bold.otf"; sourceTree = "<group>"; };
 		CD9CC33E28BFC8B000224FC7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CD9CC34728C0CC3800224FC7 /* Phrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phrase.swift; sourceTree = "<group>"; };
@@ -185,6 +191,14 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		CD8928192937969400A812AB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CD89281A293796A100A812AB /* clutterCutter.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		CD9CC33D28BFC8A300224FC7 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +276,7 @@
 		CDC9A88D286D810700185C61 /* Getit */ = {
 			isa = PBXGroup;
 			children = (
+				CD8928192937969400A812AB /* Utils */,
 				CD9CC34C28C0E15F00224FC7 /* Repositories */,
 				CD9CC34928C0E12600224FC7 /* Lib */,
 				CD52053D288D75DB00ECA297 /* Resources */,
@@ -331,7 +346,9 @@
 				CD23840628D1FF05003FBD74 /* RAMView.swift */,
 				CD8928132937887C00A812AB /* RAMViewModel.swift */,
 				CD23840A28D1FF2A003FBD74 /* IdiomView.swift */,
+				CD892815293791DC00A812AB /* IdiomViewModel.swift */,
 				CD23840828D1FF22003FBD74 /* ShuffleView.swift */,
+				CD8928172937962B00A812AB /* ShuffleViewModel.swift */,
 				CD9CC36428C4A7B300224FC7 /* ResultView.swift */,
 				CD9CC36628C4AA8B00224FC7 /* ResultViewModel.swift */,
 			);
@@ -559,7 +576,10 @@
 				CD8732A62900090D001AA69C /* LottieView.swift in Sources */,
 				CDC9A8DC286D8CC400185C61 /* LoadingView.swift in Sources */,
 				CDC9A8CF286D87B900185C61 /* HomeViewModel.swift in Sources */,
+				CD89281B293796A100A812AB /* clutterCutter.swift in Sources */,
+				CD892816293791DC00A812AB /* IdiomViewModel.swift in Sources */,
 				CD23840728D1FF05003FBD74 /* RAMView.swift in Sources */,
+				CD8928182937962B00A812AB /* ShuffleViewModel.swift in Sources */,
 				CD52054D2892B55400ECA297 /* ActivityView.swift in Sources */,
 				CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,

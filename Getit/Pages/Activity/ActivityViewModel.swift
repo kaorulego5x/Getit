@@ -30,34 +30,6 @@ struct Session: Equatable {
     }
 }
 
-struct EnPart: Identifiable {
-    var text: String
-    var isSpeeched: Bool
-    var id: UUID
-}
-
-struct IdiomChoice {
-    var text: String
-    var isCorrect: Bool
-}
-
-struct ShuffleCandidate {
-    var text: String
-    var position: Int
-}
-
-struct ShuffleBlank {
-    var isBlank: Bool
-    var answerIndex: Int
-    var placeHolder: String
-}
-
-enum ShuffleStatus: String {
-    case selecting = "selecting"
-    case correct = "correct"
-    case incorrect = "incorrect"
-}
-
 let randomChoices: [String] = ["on", "in", "it", "down", "upon", "to", "up"]
 
 class ActivityViewModel: ObservableObject {
@@ -70,19 +42,6 @@ class ActivityViewModel: ObservableObject {
     @Published var sessionIndex = -1
     @Published var currentSession: Session?
     @Published var correctNum = 0
-    
-    // Idiom
-    @Published var idiomChoices: [IdiomChoice] = []
-    @Published var displayIdiomChoices: [IdiomChoice] = []
-    @Published var selectedChoiceIndex: Int = -1
-    @Published var isIdiomChoiceDone: Bool = false
-    
-    // Shuffle
-    @Published var blanks: [ShuffleBlank] =  []
-    @Published var answers: [String] = []
-    @Published var candidates: [ShuffleCandidate] = []
-    @Published var selectedCandidates: [ShuffleCandidate] = []
-    @Published var shuffleStatus: ShuffleStatus = ShuffleStatus.selecting
     
     init(eo: AppViewModel) {
         self.eo = eo
@@ -106,69 +65,7 @@ class ActivityViewModel: ObservableObject {
     
     func resetSession() {
         self.sessionIndex = 0
-        self.idiomChoices = []
-        self.displayIdiomChoices = []
-        self.selectedChoiceIndex = -1
-        self.isIdiomChoiceDone = false
-        self.blanks = []
-        self.answers = []
-        self.candidates = []
-        self.selectedCandidates = []
-        self.shuffleStatus = ShuffleStatus.selecting
-        
         let session = sessions[sessionIndex]
-        switch(session.sessionType) {
-        case .ram:
-            break
-        case .idiom:
-            let correctPart = session.phrase.en.components(separatedBy: " ").first(where: { $0.contains("`") })
-            if let correctPart = correctPart {
-                let correctMatches = matches(for: "`.*`", in: correctPart)
-                let correctAnswer = correctMatches[0].replacingOccurrences(of: "`", with: "").lowercased()
-                self.idiomChoices.append(IdiomChoice(text: correctAnswer, isCorrect: true))
-                let otherChoices = randomChoices.filter { $0 != correctAnswer }.shuffled()
-                for i in 0..<4 {
-                    self.idiomChoices.append(IdiomChoice(text: otherChoices[i], isCorrect: false))
-                }
-                self.displayIdiomChoices = self.idiomChoices.shuffled()
-            } else {
-                print("Idiom not found")
-            }
-        case .shuffle:
-            var answerIndex = 0
-            for component in session.phrase.en.components(separatedBy: " ") {
-                let textAndClutter = getTextAndClutter(component)
-                if (textAndClutter.count == 2) {
-                    self.blanks.append(ShuffleBlank(isBlank: true, answerIndex: answerIndex, placeHolder: ""))
-                    answerIndex += 1
-                    self.blanks.append(ShuffleBlank(isBlank: false, answerIndex: 0, placeHolder: textAndClutter[1]))
-                    self.answers.append(textAndClutter[0])
-                } else if (textAndClutter[0] == "-") {
-                    self.blanks.append(ShuffleBlank(isBlank: false, answerIndex: 0, placeHolder: "-"))
-                } else {
-                    self.blanks.append(ShuffleBlank(isBlank: true, answerIndex: answerIndex, placeHolder: ""))
-                    answerIndex += 1
-                    self.answers.append(textAndClutter[0])
-                }
-            }
-            self.candidates = self.answers.shuffled().enumerated().map { (index, answer) in
-                return ShuffleCandidate(text: answer, position: index)
-            }
-            return
-        }
-    }
-    
-    let clutters = ["...", "!?", "!!", "?!", "!", "?", ".", ","]
-    
-    func getTextAndClutter(_ text: String) -> [String] {
-        let textLen = text.count
-        for clutter in clutters {
-            let clutterLen = clutter.count
-            if (text.contains(clutter)) {
-                return [text.substring(to: textLen - clutterLen).lowercased(), text.substring(from: textLen - clutterLen).lowercased()]
-            }
-        }
-        return [text.lowercased()]
     }
     
     func fetchUnit() {
@@ -231,52 +128,6 @@ class ActivityViewModel: ObservableObject {
             }
         }
         return rams.shuffled() + idioms.shuffled() + shuffles.shuffled()
-    }
-    
-    // Idiom
-    func selectChoice(choice: IdiomChoice) {
-        if let index = self.idiomChoices.firstIndex(where: {$0.text == choice.text}) {
-            withAnimation(.easeOut(duration: 0.2)) {
-                self.selectedChoiceIndex = index
-            }
-        } else {
-            print("Error occurred when selecting idiom choice")
-        }
-    }
-    
-    func validateIdiomChoice() {
-        withAnimation(.easeOut(duration: 0.2)) {
-            self.isIdiomChoiceDone = true
-        }
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(self.selectedChoiceIndex == 0 ? .success : .warning)
-    }
-    
-    // Shuffle
-    func selectShuffleCandidate(candidate: ShuffleCandidate) {
-        self.selectedCandidates.append(candidate)
-    }
-    
-    func unselectShuffleCandidate(candidate: ShuffleCandidate) {
-        let index = self.selectedCandidates.firstIndex(where: {$0.position == candidate.position})
-        if let index = index {
-            self.selectedCandidates.remove(at: index)
-        }
-    }
-    
-    func validateShuffleChoice() {
-        var isCorrect = true
-        for (index, candidate) in self.selectedCandidates.enumerated() {
-            if(candidate.text != self.answers[index]) {
-                isCorrect = false
-                break
-            }
-        }
-        withAnimation(.easeOut(duration: 0.2)) {
-            self.shuffleStatus = (isCorrect ? ShuffleStatus.correct : ShuffleStatus.incorrect)
-        }
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(isCorrect ? .success : .warning)
     }
 }
 

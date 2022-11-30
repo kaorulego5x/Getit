@@ -8,12 +8,16 @@
 import Foundation
 import SwiftUI
 
+struct EnPart: Identifiable {
+    var text: String
+    var isSpeeched: Bool
+    var id: UUID
+}
+
 class RAMViewModel: ObservableObject {
-    // let assistSpeech: (Int) -> Void;
-    
-    // RAM
     @Published var enParts: [EnPart] = []
     @Published var isCompleted: Bool = false
+    // let assistSpeech: (Int) -> Void;
     
     /*
     init(assistSpeech: @escaping (Int) -> Void) {

@@ -11,10 +11,10 @@ import WrappingHStack
 struct RAMView: View {
     @Binding var session: Session
     @Binding var sessionIndex: Int
-    var handleNext: () -> Void;
+    var handleNext: () -> Void
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var speaker = Speaker()
-    @StateObject var vm = RAMViewModel();
+    @StateObject var vm = RAMViewModel()
     
     init(session: Binding<Session>, sessionIndex: Binding<Int>, handleNext: @escaping () -> Void) {
         self._session = session
