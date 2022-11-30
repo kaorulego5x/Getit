@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-var wordList = ["Get"]
-var activityList = [1, 2, 3, 4]
-
 struct MapView: View {
     @EnvironmentObject var eo: AppViewModel
     @StateObject var vm: MapViewModel
@@ -40,7 +37,6 @@ struct MapView: View {
             VStack(){
                 ForEach(vm.masterData.words, id: \.self) { word in
                     let progress = vm.user.progress.first(where: {$0.word == word.word})
-                
                     let isFocused = self.focusedWord == word.word
                     if let progress = progress {
                         MapRowView(eo: self.eo, progress: progress, word: word, isFocused: isFocused, onToggle: handleToggle)

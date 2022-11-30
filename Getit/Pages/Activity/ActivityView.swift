@@ -46,14 +46,16 @@ struct ActivityView: View {
                     .padding(.top, 24)
                     .padding(.bottom, 30)
                     
-                    if let session = vm.currentSession {
-                        switch(session.sessionType) {
-                        case .ram:
-                            RAMView(session: session, enParts: vm.enParts, sessionIndex: vm.sessionIndex, handleNext: vm.handleNext, handleSpeechInput: vm.handleSpeechInput, isCompleted: $vm.isCompleted)
-                        case .idiom:
-                            IdiomView(session: session, idiomChoices: vm.idiomChoices, displayIdiomChoices: vm.displayIdiomChoices, selectedChoiceIndex: vm.selectedChoiceIndex, isIdiomChoiceDone: vm.isIdiomChoiceDone, selectChoice: vm.selectChoice, validateIdiomChoice: vm.validateIdiomChoice, handleNext: vm.handleNext)
-                        case .shuffle:
-                            ShuffleView(session: session, blanks: vm.blanks, answers: vm.answers, candidates: vm.candidates, selectedCandidates: vm.selectedCandidates, shuffleStatus: vm.shuffleStatus, selectShuffleCandidate: vm.selectShuffleCandidate, unselectShuffleCandidate: vm.unselectShuffleCandidate, handleNext: vm.handleNext, validateShuffleChoice: vm.validateShuffleChoice)
+                    if let session = vm.sessions[vm.sessionIndex] {
+                        if let _ = vm.currentSession {
+                            switch(session.sessionType) {
+                            case .ram:
+                                RAMView(session: Binding($vm.currentSession)!, sessionIndex: $vm.sessionIndex, handleNext: vm.handleNext)
+                            case .idiom:
+                                IdiomView(session: session, idiomChoices: vm.idiomChoices, displayIdiomChoices: vm.displayIdiomChoices, selectedChoiceIndex: vm.selectedChoiceIndex, isIdiomChoiceDone: vm.isIdiomChoiceDone, selectChoice: vm.selectChoice, validateIdiomChoice: vm.validateIdiomChoice, handleNext: vm.handleNext)
+                            case .shuffle:
+                                ShuffleView(session: session, blanks: vm.blanks, answers: vm.answers, candidates: vm.candidates, selectedCandidates: vm.selectedCandidates, shuffleStatus: vm.shuffleStatus, selectShuffleCandidate: vm.selectShuffleCandidate, unselectShuffleCandidate: vm.unselectShuffleCandidate, handleNext: vm.handleNext, validateShuffleChoice: vm.validateShuffleChoice)
+                            }
                         }
                     }
                     
@@ -63,6 +65,9 @@ struct ActivityView: View {
             } else if(vm.route == .result) {
                 ResultView(eo: self.eo, phraseNum: vm.sessions.count ?? 0, correctNum: vm.correctNum)
             }
+        }
+        .onChange(of: vm.sessionIndex) { newIndex in
+            vm.currentSession = vm.sessions[newIndex]
         }
         .background(Color.bg.ignoresSafeArea())
     }

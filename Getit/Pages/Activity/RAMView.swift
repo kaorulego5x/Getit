@@ -9,22 +9,17 @@ import SwiftUI
 import WrappingHStack
 
 struct RAMView: View {
-    var session: Session
-    var enParts: [EnPart]
-    var sessionIndex: Int
+    @Binding var session: Session
+    @Binding var sessionIndex: Int
     var handleNext: () -> Void;
-    var handleSpeechInput: (String) -> Void;
-    @Binding var isCompleted: Bool
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var speaker = Speaker()
+    @StateObject var vm = RAMViewModel();
     
-    init(session: Session, enParts: [EnPart], sessionIndex: Int, handleNext: @escaping () -> Void, handleSpeechInput: @escaping (String) -> Void, isCompleted: Binding<Bool>) {
-        self.session = session
-        self.enParts = enParts
-        self.sessionIndex = sessionIndex
+    init(session: Binding<Session>, sessionIndex: Binding<Int>, handleNext: @escaping () -> Void) {
+        self._session = session
+        self._sessionIndex = sessionIndex
         self.handleNext = handleNext
-        self.handleSpeechInput = handleSpeechInput
-        self._isCompleted = isCompleted
     }
     
     var body: some View {
@@ -44,7 +39,7 @@ struct RAMView: View {
                 .lgJa()
                 .foregroundColor(Color.white)
             
-            WrappingHStack(self.enParts) { part in
+            WrappingHStack(self.vm.enParts) { part in
                 Text(part.text)
                     .getit()
                     .foregroundColor(part.isSpeeched ? Color.white : Color.white.opacity(0.5))
@@ -56,7 +51,7 @@ struct RAMView: View {
                 self.handleNext()
             }){
                 HStack(spacing:0){
-                    if(!self.isCompleted) {
+                    if(!self.vm.isCompleted) {
                         LottieView(name: "listening", loopMode: .loop)
                                 .frame(width: 120, height: 120)
                                 .frame(maxWidth: .infinity)
@@ -70,25 +65,27 @@ struct RAMView: View {
                 .frame(maxWidth:.infinity)
                 .frame(height: 56)
                 .background(LinearGradient(gradient: Color.learnGrad, startPoint: .leading, endPoint: .trailing))
-                .opacity(self.isCompleted ? 1 : 0.3)
+                .opacity(self.vm.isCompleted ? 1 : 0.3)
                 .cornerRadius(12)
             }
             .buttonStyle(GrowingButton())
-            .disabled(!self.isCompleted)
+            .disabled(!self.vm.isCompleted)
         }
         .padding(.horizontal, 20)
         .onChange(of: speechRecognizer.transcript) { value in
-            self.handleSpeechInput(speechRecognizer.transcript)
+            self.vm.handleSpeechInput(speechRecognizer.transcript)
         }
-        .onChange(of: self.isCompleted) { value in
+        .onChange(of: self.vm.isCompleted) { value in
             if(value) {
                 speechRecognizer.stopTranscribing()
             }
         }
-        .onChange(of: self.sessionIndex) { value in
+        .onChange(of: session) { value in
+            self.vm.reset(self.session)
             speechRecognizer.transcribe()
         }
         .onAppear() {
+            self.vm.reset(self.session)
             speechRecognizer.transcribe()
         }
     }

@@ -37,9 +37,9 @@ class AppViewModel: ObservableObject {
     }
     
     func handleAuth(_ masterData: MasterData) {
-        if let currentUser = FirebaseManager.shared.auth.currentUser { //アプリを開いたことがある場合
+        if let currentUser = FirebaseManager.shared.auth.currentUser { //アプリを使ったことがある場合
             self.fetchUserData(currentUser.uid, masterData)
-        } else { //初めてアプリを開いた場合
+        } else { //初めてアプリを使う場合
             FirebaseManager.shared.auth.signInAnonymously() { [weak self] authResult, error in
                 guard let user = authResult?.user else {
                     print("Registration failed")

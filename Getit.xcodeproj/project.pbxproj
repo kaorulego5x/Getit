@@ -18,6 +18,7 @@
 		CD8732A129000759001AA69C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CD8732A029000759001AA69C /* Lottie */; };
 		CD8732A62900090D001AA69C /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8732A52900090D001AA69C /* LottieView.swift */; };
 		CD8732AA29000AF7001AA69C /* listening.json in Resources */ = {isa = PBXBuildFile; fileRef = CD8732A929000AF7001AA69C /* listening.json */; };
+		CD8928142937887C00A812AB /* RAMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8928132937887C00A812AB /* RAMViewModel.swift */; };
 		CD8C42C428DA052100356824 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = CD8C42C328DA052100356824 /* WrappingHStack */; };
 		CD9CC33C28BFC7C000224FC7 /* NotoSansJP-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */; };
 		CD9CC33F28BFC8B000224FC7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9CC33E28BFC8B000224FC7 /* MapView.swift */; };
@@ -86,6 +87,7 @@
 		CD52054C2892B55400ECA297 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		CD8732A52900090D001AA69C /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		CD8732A929000AF7001AA69C /* listening.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = listening.json; path = ../../../../../Downloads/listening.json; sourceTree = "<group>"; };
+		CD8928132937887C00A812AB /* RAMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RAMViewModel.swift; sourceTree = "<group>"; };
 		CD9CC33B28BFC7C000224FC7 /* NotoSansJP-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansJP-Bold.otf"; sourceTree = "<group>"; };
 		CD9CC33E28BFC8B000224FC7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CD9CC34728C0CC3800224FC7 /* Phrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phrase.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				CD52054C2892B55400ECA297 /* ActivityView.swift */,
 				CD9CC35728C10D8700224FC7 /* ActivityViewModel.swift */,
 				CD23840628D1FF05003FBD74 /* RAMView.swift */,
+				CD8928132937887C00A812AB /* RAMViewModel.swift */,
 				CD23840A28D1FF2A003FBD74 /* IdiomView.swift */,
 				CD23840828D1FF22003FBD74 /* ShuffleView.swift */,
 				CD9CC36428C4A7B300224FC7 /* ResultView.swift */,
@@ -561,6 +564,7 @@
 				CD23840B28D1FF2A003FBD74 /* IdiomView.swift in Sources */,
 				CDC9A8EC286D98E500185C61 /* Icon.swift in Sources */,
 				CDC9A8F2286DA32100185C61 /* ProgressCard.swift in Sources */,
+				CD8928142937887C00A812AB /* RAMViewModel.swift in Sources */,
 				CD9CC36028C2105000224FC7 /* MapRowViewModel.swift in Sources */,
 				CDC9A8CA286D874F00185C61 /* SplashView.swift in Sources */,
 				CD9CC35428C0FAB900224FC7 /* UserRepository.swift in Sources */,

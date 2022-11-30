@@ -22,9 +22,12 @@ enum SessionType: String {
     case shuffle = "shuffle"
 }
 
-struct Session {
+struct Session: Equatable {
     var phrase: Phrase
     var sessionType: SessionType
+    static func ==(lhs: Session, rhs: Session) -> Bool {
+        return lhs.phrase.en == rhs.phrase.en && lhs.phrase.ja == rhs.phrase.ja
+    }
 }
 
 struct EnPart: Identifiable {
@@ -63,14 +66,10 @@ class ActivityViewModel: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     @Published var route: ActivityRoute = .loading
+    @Published var sessions: [Session] = []
+    @Published var sessionIndex = -1
     @Published var currentSession: Session?
-    var sessions: [Session] = []
-    @Published var sessionIndex = 0
     @Published var correctNum = 0
-    
-    // RAM
-    @Published var enParts: [EnPart] = []
-    @Published var isCompleted: Bool = false
     
     // Idiom
     @Published var idiomChoices: [IdiomChoice] = []
@@ -95,7 +94,7 @@ class ActivityViewModel: ObservableObject {
         } else {
             withAnimation(.easeOut(duration:0.1)) {
                 self.sessionIndex += 1
-                self.resetSession()
+                // self.resetSession()
             }
         }
     }
@@ -106,9 +105,7 @@ class ActivityViewModel: ObservableObject {
     }
     
     func resetSession() {
-        self.currentSession = sessions[self.sessionIndex]
-        self.enParts = []
-        self.isCompleted = false
+        self.sessionIndex = 0
         self.idiomChoices = []
         self.displayIdiomChoices = []
         self.selectedChoiceIndex = -1
@@ -122,10 +119,7 @@ class ActivityViewModel: ObservableObject {
         let session = sessions[sessionIndex]
         switch(session.sessionType) {
         case .ram:
-            self.enParts = session.phrase.en.components(separatedBy: " ").map { component in
-                return EnPart(text: component.replacingOccurrences(of: "`", with: ""), isSpeeched: false, id: UUID())
-            }
-            self.assistSpeech(self.sessionIndex);
+            break
         case .idiom:
             let correctPart = session.phrase.en.components(separatedBy: " ").first(where: { $0.contains("`") })
             if let correctPart = correctPart {
@@ -175,15 +169,6 @@ class ActivityViewModel: ObservableObject {
             }
         }
         return [text.lowercased()]
-    }
-    
-    func assistSpeech(_ idx: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-            print(idx, self.sessionIndex)
-            if(idx == self.sessionIndex) {
-                self.handleSpeechCompleted()
-            }
-        }
     }
     
     func fetchUnit() {
@@ -246,52 +231,6 @@ class ActivityViewModel: ObservableObject {
             }
         }
         return rams.shuffled() + idioms.shuffled() + shuffles.shuffled()
-    }
-    
-    // RAM
-    func handleSpeechInput(_ transcript: String) {
-        let inputParts = transcript.lowercased().components(separatedBy: " ")
-        var carry = 0
-        for (index, part) in enParts.enumerated() {
-            var a: String = part.text.lowercased()
-            if(a.contains("!?") || a.contains("?!") || a.contains("!!")) {
-                a.removeLast()
-                a.removeLast()
-            } else if(a.contains(",") || a.contains(".") || a.contains("…") || a.contains("!") || a.contains("?")) {
-                a.removeLast()
-            }
-                
-            if(part.isSpeeched) {
-                continue
-            } else if(inputParts.contains(a)) {
-                withAnimation(.easeOut(duration: 0.2)) {
-                    self.enParts[index].isSpeeched = true
-                }
-                if(index == enParts.count - 1) {
-                    self.handleSpeechCompleted()
-                }
-                if(carry == 1) {
-                    withAnimation(.easeOut(duration: 0.2)) {
-                        self.enParts[index-1].isSpeeched = true
-                    }
-                }
-            } else if (carry == 0){
-                carry = 1
-            } else {
-                break
-            }
-        }
-    }
-    
-    private func handleSpeechCompleted() {
-        for (index, _) in enParts.enumerated() {
-            self.enParts[index].isSpeeched = true;
-        }
-        withAnimation(.easeOut(duration: 0.2)) {
-            self.isCompleted = true
-        }
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
     }
     
     // Idiom
