@@ -13,6 +13,7 @@ var activityList = [1, 2, 3, 4]
 struct MapView: View {
     @EnvironmentObject var eo: AppViewModel
     @StateObject var vm: MapViewModel
+    @State var focusedWord: String = ""
     
     init(eo: AppViewModel) {
         _vm = StateObject(wrappedValue: MapViewModel(eo: eo))
@@ -22,13 +23,27 @@ struct MapView: View {
         UINavigationBar.appearance().standardAppearance = coloredAppearance
     }
     
+    func handleToggle(word: String) {
+        if(self.focusedWord == word) {
+            withAnimation(.easeOut(duration:0.1)) {
+                self.focusedWord = ""
+            }
+        } else {
+            withAnimation(.easeOut(duration:0.1)) {
+                self.focusedWord = word
+            }
+        }
+    }
+    
     var body: some View {
         ScrollView() {
             VStack(){
                 ForEach(vm.masterData.words, id: \.self) { word in
                     let progress = vm.user.progress.first(where: {$0.word == word.word})
+                
+                    let isFocused = self.focusedWord == word.word
                     if let progress = progress {
-                        MapRowView(eo: self.eo, progress: progress, word: word)
+                        MapRowView(eo: self.eo, progress: progress, word: word, isFocused: isFocused, onToggle: handleToggle)
                     }
                 }
                 Spacer()
