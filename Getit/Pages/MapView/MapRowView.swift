@@ -21,7 +21,7 @@ struct MapRowView: View {
     var body: some View {
         DisclosureGroup(
             content: {
-                VStack{
+                VStack {
                     ForEach((0..<word.units.count)){ unitIndex in
                         let unit = word.units[unitIndex]
                         HStack(spacing: 10){

@@ -144,16 +144,16 @@ class AppViewModel: ObservableObject {
                                 for word in masterData.words {
                                     let progress = user.progress.first(where: {$0.word == word.word})
                                     if let progress = progress {
-                                        if (word.units.count == progress.index + 1) { continue }
+                                        if (word.units.count == progress.index) { continue }
                                         user.nextUp = word.units[progress.index].unitId
-                                        return
+                                        break
                                     } else {
                                         print("Word didn't match")
                                     }
                                 }
                             }
                             self.user = user
-                            userRepository.updateProgress(id: user.id, progress: user.progress, phraseNum: user.phraseNum+1, nextUp: user.nextUp)
+                            userRepository.updateProgress(id: user.id, progress: user.progress, phraseNum: user.phraseNum, nextUp: user.nextUp)
                                 .sink(receiveCompletion: { completion in
                                     switch completion {
                                     case .finished: break;

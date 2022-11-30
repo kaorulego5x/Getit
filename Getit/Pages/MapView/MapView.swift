@@ -18,10 +18,8 @@ struct MapView: View {
         _vm = StateObject(wrappedValue: MapViewModel(eo: eo))
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = UIColor(.clear)
+        coloredAppearance.backgroundColor = UIColor(.bg)
         UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-        UITextView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
@@ -38,6 +36,13 @@ struct MapView: View {
         }
         .background(Color.bg.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("ユニット一覧")
+                    .smallJa()
+                    .foregroundColor(.white)
+            }
+        }
     }
 }
 
